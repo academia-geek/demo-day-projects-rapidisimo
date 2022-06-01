@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Explicacion Proyecto:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The *Rapidisimo Project* is a web application, focused on the provision of messaging sending and receiving services.
+This project meets the expectations of generating help for customers, users and administrators in which they can verify their product to send it to their customers, where they can follow it, and have more information about their messaging.
+Very quickly, it fulfills the need to solve the connection that is not found in other applications today between the client and its supplier through our web platform for monitoring and reliability between these two parties; the project has a backend on the google cloud firebase platform and was tested with Jest and Enzyme, Agile methodology is also used.
+using the kanban method as development tools (workflow is attached at the end of the readme).
+
+## This project was created with:
+
+**React**, **Redux** y **Firebase**
+
+## This proyect was Tested with:
+
+**Jest** y **Enzyme**
+
+## Frameworks:
+
+
+Only React:
+---
+**React-Router-Dom** 
+
+React (independentes):
+---
+**React-Redux**
+
+Independentes:
+---
+**Axios**, **Firebase**, **Formik**, **Yup**, **Material UI**, **Tailwind CSS** y **Firebase**
+
+Other Tools:
+---
+**Thunk**, **Cloudinary** y **Sweetalert**
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Repository
+**GitHub**  
+---
 
-### `npm test`
+Link to Repository [https://github.com/academia-geek/demo-day-projects-rapidisimo](https://github.com/academia-geek/demo-day-projects-rapidisimo).  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Api´s
+---
+Link to API´s .\
+https://api.mapbox.com/geocoding/
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Backend
+**Firebase** 
+---
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+This section has moved here: [https://app-ptwheater.web.app](https://app-ptwheater.web.app)
 
-### `npm run build` fails to minify
+### Kanban
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Workflow](https://res.cloudinary.com/docutv7ug/image/upload/v1653450845/PT-Wheather/KanbanPt-Weather_xqabr7.png "WorkFlow")
