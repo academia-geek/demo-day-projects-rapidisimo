@@ -1,4 +1,4 @@
-# Explicacion Proyecto:
+# Project:
 
 The *Rapidisimo Project* is a web application, focused on the provision of messaging sending and receiving services.
 This project meets the expectations of generating help for customers, users and administrators in which they can verify their product to send it to their customers, where they can follow it, and have more information about their messaging.
