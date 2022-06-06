@@ -1,19 +1,20 @@
-import { typeRegistration } from "../types/types";
+import { typesLogin } from "../types/typesLogin";
 
-export const reducerRegister = (state = {}, action) => {
+export const reducerLogin = (state = {}, action) => {
 	switch (action.type) {
-		case typeRegistration.login:
+		case typesLogin.login:
 			return {
 				user: action.payload.user,
 				pass: action.payload.pass
 			}
-		case typeRegistration.register:
+		case typesLogin.register:
 			return {
 				email: action.payload.email,
 				pass: action.payload.pass,
 				name: action.payload.name,
+				nickname: action.payload.nickname
 			}
-		case typeRegistration.logout:
+		case typesLogin.logout:
 			return {
 			}
 		default:

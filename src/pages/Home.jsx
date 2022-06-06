@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { logoutAsync } from "../redux/actions/actionRegister";
+import { logoutAsync } from "../redux/actions/actionLogin";
 import Button from '@mui/material/Button';
 
 

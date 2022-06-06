@@ -1,55 +1,77 @@
+// Base
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Register from "../containers/Register";
-import { PrivateRoutes, PublicRoutes } from "./PublicAndPrivateRoutes";
+
+// Firebase
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import Login from "../containers/Login";
+
+// Pages
+import Register from "../pages/Register";
+import Login from "../pages/Login";
+
+// Componentes
+import { PrivateRoutes, PublicRoutes } from "./PublicAndPrivateRoutes";
 import DashboardRoutes from "./DashboardRoutes";
 
+// Material UI
+import { CircularProgress } from "@mui/material";
 
 const AppRoutes = () => {
-  const [checkIn, setCheckIn] = useState(true)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [checkIn, setCheckIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    const auth = getAuth()
+    const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user?.uid) {
-        setIsLoggedIn(true)
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
       }
-      else {
-        setIsLoggedIn(false)
-      }
-      setCheckIn(false)
-    })
-  }, [setIsLoggedIn, setCheckIn])
+      setCheckIn(false);
+    });
+  }, [setIsLoggedIn, setCheckIn]);
   if (checkIn) {
     return (
-      <div>
-        <h1>Cargando...</h1>
+      <div
+        className="
+          flex items-center justify-center
+          w-screen h-screen bg-white
+        "
+      >
+        <CircularProgress color="primary" />
       </div>
     )
   }
   return (
     <BrowserRouter>
       <Routes>
-
-      <Route path="/login" element={
+        <Route
+          path="/login"
+          element={
             <PublicRoutes isAuth={isLoggedIn}>
               <Login />
             </PublicRoutes>
-          } />
-          <Route path="/register" element={
+          }
+        />
+        <Route
+          path="/register"
+          element={
             <PublicRoutes isAuth={isLoggedIn}>
               <Register />
             </PublicRoutes>
-          } />
-          <Route path="/*" element={
+          }
+        />
+        <Route
+          path="/*"
+          element={
             <PrivateRoutes isAuth={isLoggedIn}>
               <DashboardRoutes />
             </PrivateRoutes>
-          } />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
 };
+
 export default AppRoutes;

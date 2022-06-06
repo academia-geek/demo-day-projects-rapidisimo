@@ -1,6 +1,6 @@
 module.exports.themeGeneral = {
-  primary: '#356859',
-  secondary: '#fd5523',
+  primary: '#054A91',
+  secondary: '#f0711f',
   accent: '#512Da8',
   error: '#f82b2f',
   success: '#50ae57',
