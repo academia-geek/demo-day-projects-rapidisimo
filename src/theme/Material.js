@@ -10,6 +10,9 @@ const theme = createTheme({
     secondary: {
       main: themeGeneral.secondary,
     },
+    success: {
+      main: themeGeneral.success,
+    },
     error: {
       main: '#EF4444',
     },

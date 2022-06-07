@@ -8,7 +8,7 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 
 const Header = ({nameUser}) => {
   return (
-    <div className="flex items-center gap-3 w-full h-auto mb-6 md:mb-8">
+    <div className="flex items-center gap-3 w-full h-auto mb-6 md:mb-10">
       <h2 className="text-2xl md:text-3xl font-semibold">
         Hola,
         <span className="ml-2 font-light">
@@ -18,7 +18,6 @@ const Header = ({nameUser}) => {
       <Badge badgeContent={4} color="error">
         <NotificationsOutlinedIcon sx={{ fontSize: 30 }}/>
       </Badge>
-
     </div>
   )
 }

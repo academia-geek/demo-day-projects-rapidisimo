@@ -1,7 +1,13 @@
+// Base
 import React from "react";
-import DrawerSidebar from "../components/DrawerSidebar";
+
+// Container
 import Layout from "../containers/Layout";
 
+// Components
+import DrawerSidebar from "../components/DrawerSidebar";
+import ListarRepartidores from "../components/ListarRepartidores";
+import ListarComercios from "../components/ListadoComercios";
 
 const Home = () => {
   return (
@@ -13,6 +19,8 @@ const Home = () => {
       </DrawerSidebar>
 
       <Layout>
+        <ListarRepartidores />
+        <ListarComercios />
       </Layout>
     </div>
   );
