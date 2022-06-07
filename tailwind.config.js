@@ -9,7 +9,7 @@ module.exports = {
       colors: {
         'primary': themeGeneral.primary,
         'secondary': themeGeneral.secondary,
-        'tertiary': '#b9e4c9',
+        'info': themeGeneral.info,
         'quaternary': '#0E3FA9',
         'background': themeGeneral.background,
         'white': '#FFFFFF',

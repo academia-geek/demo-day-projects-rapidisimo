@@ -5,6 +5,6 @@ module.exports.themeGeneral = {
   error: '#f82b2f',
   success: '#50ae57',
   warning: '#fa8a24',
-  info: '#2399ef',
+  info: '#3f7daf',
   background: '#fffbe6',
 }

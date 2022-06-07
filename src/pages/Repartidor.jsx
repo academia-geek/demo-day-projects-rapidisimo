@@ -3,12 +3,12 @@ import DrawerSidebar from "../components/DrawerSidebar";
 import Layout from "../containers/Layout";
 
 
-const Home = () => {
+const Repartidor = () => {
   return (
     <div className="w-full h-screen">
       <DrawerSidebar
-        bgColor="bg-primary"
-        btnColor="secondary"
+        bgColor="bg-secondary"
+        btnColor="primary"
       >
       </DrawerSidebar>
 
@@ -18,4 +18,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Repartidor;
