@@ -28,13 +28,15 @@ const RepartidorPerfil = ({ nameDealer, image }) => {
 
 const ListarRepartidores = () => {
   return (
-    <div className="w-full h-auto mb-8">
+    <div className="w-full h-auto mb-6">
       <section className="flex items-center gap-4 mb-4">
-        <h4 className="font-normal text-2xl">Repartidores</h4>
+        <h4 className="font-medium md:font-normal text-xl md:text-2xl">
+          Repartidores
+        </h4>
         <aside
           className="
             w-[120px] h-auto
-            py-2 px-3
+            py-1 px-2 md:py-2 md:px-3
             rounded-full bg-success
             text-white text-base font-medium text-center
           "

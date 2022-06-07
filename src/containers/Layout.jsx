@@ -7,12 +7,11 @@ const Layout = ({children}) => {
     <div
       className="
         w-full md:w-[calc(100vw-340px)] lg:w-[calc(100vw-360px)]
-        h-screen px-4 py-6 md:py-0 md:p-6 lg:p-8
+        h-auto lg:h-screen px-4 py-6 md:py-0 md:p-6 lg:p-7
         md:ml-[340px] lg:ml-[360px] bg-background
       "
     >
       <Header />
-
       {children}
     </div>
   )

@@ -8,7 +8,7 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 
 const Header = ({nameUser}) => {
   return (
-    <div className="flex items-center gap-3 w-full h-auto mb-6 md:mb-10">
+    <div className="flex items-center gap-3 w-full h-auto mb-6">
       <h2 className="text-2xl md:text-3xl font-semibold">
         Hola,
         <span className="ml-2 font-light">

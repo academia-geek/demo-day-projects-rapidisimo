@@ -8,6 +8,8 @@ import Layout from "../containers/Layout";
 import DrawerSidebar from "../components/DrawerSidebar";
 import ListarRepartidores from "../components/ListarRepartidores";
 import ListarComercios from "../components/ListadoComercios";
+import ListadoOrdenes from "../components/ListadoOrdenes";
+import ListadoIndicadores from "../components/ListadoIndicadores";
 
 const Home = () => {
   return (
@@ -21,6 +23,11 @@ const Home = () => {
       <Layout>
         <ListarRepartidores />
         <ListarComercios />
+
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <ListadoOrdenes />
+          <ListadoIndicadores />
+        </section>
       </Layout>
     </div>
   );

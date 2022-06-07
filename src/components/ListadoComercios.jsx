@@ -11,6 +11,7 @@ const ComercioPerfil = ({ nameCommerce, logo, nit }) => {
         min-w-[320px] max-w-[320px] h-24
         p-4 md:p-5
         bg-white rounded-md shadow-lg
+        border-l-4 border-secondary
       "
     >
       <img
@@ -32,8 +33,10 @@ const ComercioPerfil = ({ nameCommerce, logo, nit }) => {
 
 const ListarComercios = () => {
   return (
-    <div className="w-full h-auto mb-8">
-      <h4 className="font-normal text-2xl mb-4">Comercios</h4>
+    <div className="w-full h-auto mb-6">
+      <h4 className="font-medium md:font-normal text-xl md:text-2xl mb-4">
+        Comercios
+      </h4>
 
       <section className="scroll-app flex flex-nowrap gap-4 overflow-y-auto">
         <ComercioPerfil />
