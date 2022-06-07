@@ -15,3 +15,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* MODIFICACIONES AL SCROLL */
+  /* Tamaño del scroll */
+  .scroll-app::-webkit-scrollbar {
+    width: 6px;
+    height: 6px
+  }
+
+  /* Estilos barra (thumb) de scroll */
+  .scroll-app::-webkit-scrollbar-thumb {
+    background :#ccc;
+    border-radius: 4px
+  }
+
+  .scroll-app::-webkit-scrollbar-thumb:active {
+    background-color: #999999
+  }
+
+  .scroll-app::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3
+  }
+
+  /* Estilos track de scroll */
+  .scroll-app::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 4px
+  }
+
+  .scroll-app::-webkit-scrollbar-track:hover,
+  .scroll-app::-webkit-scrollbar-track:active {
+    background: #d4d4d4
+  }

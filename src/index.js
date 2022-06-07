@@ -22,7 +22,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store} >
       <ThemeProvider theme={theme}>
-        <AppRoutes />
+        <AppRoutes className="scroll-app"/>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,
