@@ -33,7 +33,12 @@ function DrawerSidebar({children, window, bgColor, btnColor, image, name, role})
         aria-label="open drawer"
         edge="start"
         onClick={handleDrawerToggle}
-        sx={{ display: { sm: "none" }}}
+        sx={{
+          display: { sm: "none" },
+          position: "absolute",
+          top: "24px",
+          right: "16px"
+        }}
       >
         <MenuIcon />
       </IconButton>
