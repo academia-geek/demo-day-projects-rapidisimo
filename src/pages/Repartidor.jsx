@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import DrawerSidebar from "../components/DrawerSidebar";
 import Layout from "../containers/Layout";
 import StarIcon from "@mui/icons-material/Star";
+import ListadoSolicitudesRepartidor from "../components/ListadoSolicitudesRepartidor";
 
 const InfoRepartidor = ({ services, distance, rating }) => {
   return (
@@ -57,7 +58,9 @@ const Repartidor = () => {
         <InfoRepartidor />
       </DrawerSidebar>
 
-      <Layout></Layout>
+      <Layout>
+        <ListadoSolicitudesRepartidor/>
+      </Layout>
     </div>
   );
 };

@@ -90,19 +90,19 @@ const ListadoOrdenes = () => {
         "
       >
         <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-        <button onClick={() => handleClickOpen()}>
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar sx={{ background: "green" }}>
-                <AddLocationAltOutlinedIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Orden de envío 01 - Proto Tech"
-              secondary="Entregado"
-            />
-          </ListItem>
-        </button>
+          <button onClick={() => handleClickOpen()}>
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar sx={{ background: "green" }}>
+                  <AddLocationAltOutlinedIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary="Orden de envío 01 - Proto Tech"
+                secondary="Entregado"
+              />
+            </ListItem>
+          </button>
         </List>
       </section>
 
