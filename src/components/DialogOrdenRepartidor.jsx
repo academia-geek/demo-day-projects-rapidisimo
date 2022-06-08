@@ -18,10 +18,6 @@ import {
 // Material UI Icons
 import CloseIcon from "@mui/icons-material/Close";
 
-// Styles
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -38,14 +34,10 @@ const DialogOrdenRepartidor = ({
   openModal,
   onCloseModal,
 }) => {
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-
   return (
     <div>
       <Dialog
         open={openModal}
-        fullScreen={fullScreen}
         maxWidth="sm"
         fullWidth
         TransitionComponent={Transition}
@@ -62,7 +54,7 @@ const DialogOrdenRepartidor = ({
               border-b border-gray-400
             "
           >
-            <h4 className="font-medium text-xl md:text-2xl">
+            <h4 className="font-medium text-lg md:text-2xl">
               Detalle de la orden #{code}
             </h4>
             <IconButton onClick={onCloseModal}>
