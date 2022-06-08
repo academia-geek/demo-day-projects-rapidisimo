@@ -1,19 +1,34 @@
 // Base
-import * as React from "react";
+import React, { useState } from "react";
+
+// Components
+import DialogOrdenDetalle from "./DialogOrdenDetalle";
 
 // Material UI
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import ImageIcon from "@mui/icons-material/Image";
-import WorkIcon from "@mui/icons-material/Work";
-import BeachAccessIcon from "@mui/icons-material/BeachAccess";
-import { Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Grid,
+  InputLabel,
+  MenuItem,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Select,
+  TextField,
+} from "@mui/material";
+
+// Material UI Icons
 import AddLocationAltOutlinedIcon from "@mui/icons-material/AddLocationAltOutlined";
 
 const ListadoOrdenes = () => {
+  const [abrir, setAbrir] = useState(false)
+
+    const handleClickOpen = () => {
+      setAbrir(!abrir);
+  };
+
   return (
     <div>
       <h4 className="font-medium md:font-normal text-xl md:text-2xl mb-4">
@@ -42,7 +57,7 @@ const ListadoOrdenes = () => {
           <Select
             labelId="demo-select-small"
             id="demo-select-small"
-            label="Estado"
+            label="Comercio"
             fullWidth
             size="small"
           >
@@ -75,6 +90,7 @@ const ListadoOrdenes = () => {
         "
       >
         <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+        <button onClick={() => handleClickOpen()}>
           <ListItem>
             <ListItemAvatar>
               <Avatar sx={{ background: "green" }}>
@@ -86,8 +102,11 @@ const ListadoOrdenes = () => {
               secondary="Entregado"
             />
           </ListItem>
+        </button>
         </List>
       </section>
+
+      <DialogOrdenDetalle open={abrir} onClose={handleClickOpen}/>
     </div>
   );
 };
