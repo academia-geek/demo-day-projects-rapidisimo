@@ -78,13 +78,13 @@ function DrawerSidebar({children, window, bgColor, btnColor, image, name, role})
               "
             >
               <img
-                className="W-[160px] h-auto rounded-full mb-10 object-cover"
+                className="w-[160px] h-auto rounded-full mb-5 object-cover"
                 src={image}
                 alt="User Logo"
               />
               <h3
                 className="
-                    mb-6
+                    mb-4
                     text-2xl text-white
                     font-semibold tracking-wider uppercase
                   "
@@ -142,13 +142,13 @@ function DrawerSidebar({children, window, bgColor, btnColor, image, name, role})
               "
             >
               <img
-                className="W-[160px] h-auto rounded-full mb-10 object-cover"
+                className="w-[160px] h-auto rounded-full mb-5 object-cover"
                 src={image}
                 alt="User Logo"
               />
               <h3
                 className="
-                    mb-6
+                    mb-4
                     text-2xl text-white
                     font-semibold tracking-wider uppercase
                   "
