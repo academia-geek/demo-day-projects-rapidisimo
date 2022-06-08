@@ -45,7 +45,16 @@ const InfoRepartidor = ({ services, distance, rating }) => {
   );
 };
 
-const Repartidor = () => {
+const Repartidor = (
+{
+  code,
+  commerce,
+  date,
+  pickupLocation,
+  placeDelivery,
+  deliveryTime,
+  pickUpTimes,
+}) => {
   return (
     <div className="w-full h-screen">
       <DrawerSidebar
