@@ -1,11 +1,15 @@
 // Base
 import React, { useState } from "react";
 
+// Components
+import DialogOrdenRepartidor from "./DialogOrdenRepartidor";
+
 // Material UI
 import {
   Avatar,
   List,
   ListItem,
+  Divider,
   ListItemText,
   ListItemAvatar,
 } from "@mui/material";
@@ -14,6 +18,12 @@ import {
 import AddLocationAltOutlinedIcon from "@mui/icons-material/AddLocationAltOutlined";
 
 const ListadoSolicitudesRepartidor = () => {
+  const [abrir, setAbrir] = useState(false);
+
+  const handleClickOpen = () => {
+    setAbrir(!abrir);
+  };
+
   return (
     <div className="flex flex-col gap-4 w-full h-auto">
       <section>
@@ -30,7 +40,7 @@ const ListadoSolicitudesRepartidor = () => {
           "
         >
           <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-            <button>
+            <button onClick={() => handleClickOpen()}>
               <ListItem>
                 <ListItemAvatar>
                   <Avatar sx={{ background: "#E4DD2E" }}>
@@ -43,6 +53,7 @@ const ListadoSolicitudesRepartidor = () => {
                 />
               </ListItem>
             </button>
+            <Divider variant="inset" component="li" />
           </List>
         </div>
       </section>
@@ -61,7 +72,7 @@ const ListadoSolicitudesRepartidor = () => {
           "
         >
           <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-            <button>
+            <button onClick={() => handleClickOpen()}>
               <ListItem>
                 <ListItemAvatar>
                   <Avatar sx={{ background: "green" }}>
@@ -74,9 +85,12 @@ const ListadoSolicitudesRepartidor = () => {
                 />
               </ListItem>
             </button>
+            <Divider variant="inset" component="li" />
           </List>
         </div>
       </section>
+
+      <DialogOrdenRepartidor openModal={abrir} onCloseModal={handleClickOpen} />
     </div>
   );
 };

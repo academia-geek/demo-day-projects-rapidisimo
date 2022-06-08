@@ -7,7 +7,7 @@ import DialogOrdenDetalle from "./DialogOrdenDetalle";
 // Material UI
 import {
   Avatar,
-  Button,
+  Divider,
   Grid,
   InputLabel,
   MenuItem,
@@ -23,10 +23,10 @@ import {
 import AddLocationAltOutlinedIcon from "@mui/icons-material/AddLocationAltOutlined";
 
 const ListadoOrdenes = () => {
-  const [abrir, setAbrir] = useState(false)
+  const [abrir, setAbrir] = useState(false);
 
-    const handleClickOpen = () => {
-      setAbrir(!abrir);
+  const handleClickOpen = () => {
+    setAbrir(!abrir);
   };
 
   return (
@@ -103,10 +103,11 @@ const ListadoOrdenes = () => {
               />
             </ListItem>
           </button>
+          <Divider variant="inset" component="li" />
         </List>
       </section>
 
-      <DialogOrdenDetalle open={abrir} onClose={handleClickOpen}/>
+      <DialogOrdenDetalle open={abrir} onClose={handleClickOpen} />
     </div>
   );
 };
