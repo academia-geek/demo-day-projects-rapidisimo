@@ -9,14 +9,12 @@ export const reducerLogin = (state = {}, action) => {
 			}
 		case typesLogin.register:
 			return {
-				email: action.payload.email,
-				pass: action.payload.pass,
 				name: action.payload.name,
-				nickname: action.payload.nickname
+				email: action.payload.email,
+				password: action.payload.password,
 			}
 		case typesLogin.logout:
-			return {
-			}
+			return {}
 		default:
 			return state
 	}

@@ -13,9 +13,16 @@ const Indicadores = ({ title, subtitle }) => {
         border-l-4 border-primary
       "
     >
-      <p className="text-regular text-xl">{title}</p>
+      <p className="text-regular text-xl lg:text-base xl:text-xl">{title}</p>
 
-      <p className="font-semibold text-xl tracking-wider">{subtitle}</p>
+      <p
+        className="
+          font-semibold tracking-wider
+          text-xl lg:text-base xl:text-xl
+        "
+      >
+        {subtitle}
+      </p>
     </div>
   );
 };

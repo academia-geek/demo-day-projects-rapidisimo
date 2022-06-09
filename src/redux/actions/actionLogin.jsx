@@ -12,6 +12,7 @@ import {
   createUserWithEmailAndPassword,
   deleteUser,
   onAuthStateChanged,
+  sendEmailVerification,
 } from "firebase/auth"
 
 //---------- Logout ----------//
@@ -109,23 +110,36 @@ export const loginFacebook = () => {
 }
 
 //---------- Para registrar en Firebase ----------//
-export const registroAsync = (name, email, nickname, password) => {
+export const registroAsync = (name, email, password) => {
   return (dispatch) => {
     const auth = getAuth()
-    createUserWithEmailAndPassword(auth, name, email, nickname, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then(async ({ user }) => {
-        await updateProfile(auth.currentUser, { displayName: nickname })
-        dispatch(registroSync(name, email, nickname, password))
-        alert('Usuario Registrado de manera exitosa')
+        await updateProfile(auth.currentUser, { displayName: name})
+        if (user !== null) {
+          const emailVerified = user.emailVerified
+          if(emailVerified === false){
+            sendEmailVerification(user)
+            .then(() => {
+              console.log('Email enviado')
+            })
+            .catch(error => {
+              console.warn(error)
+            })
+          } else{
+            console.log('Verificado')
+          }
+        }
+        dispatch(registroSync(user.email, user.uid, user.displayName))
       })
   }
 }
 
-export const registroSync = (name, email, nickname, password) => {
+export const registroSync = (name, email, password) => {
   return {
-    type: typesLogin.registro,
+    type: typesLogin.register,
     payload: {
-      name, email, nickname, password
+      name, email, password
     }
   }
 }
