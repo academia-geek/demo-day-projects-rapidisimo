@@ -24,6 +24,9 @@ const AppRoutes = () => {
     onAuthStateChanged(auth, (user) => {
       if (user?.uid) {
         setIsLoggedIn(true);
+        user.getIdToken()
+        .then((token) => {})
+        .catch((error) => {})
       } else {
         setIsLoggedIn(false);
       }

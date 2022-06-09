@@ -51,14 +51,14 @@ const Login = (props) => {
         <div
           className="
             w-full max-w-3xl h-auto
-            space-y-8 p-8 md:p-[115px]
+            space-y-8 p-8 md:md:p-16
             backdrop-blur-sm bg-white/30
             shadow-lg shadow-black/40
           "
         >
           <section
             className="
-              flex justify-start gap-8 md:gap-16 mb-[180px]
+              flex justify-start gap-8 md:gap-16 mb-44
               text-white text-xl md:text-2xl font-medium
               tracking-wider uppercase
             "

@@ -12,6 +12,7 @@ import {
   createUserWithEmailAndPassword,
   deleteUser,
   onAuthStateChanged,
+  sendEmailVerification,
 } from "firebase/auth"
 
 //---------- Logout ----------//
@@ -19,6 +20,8 @@ export const logoutAsync = () => {
   return (dispatch) => {
     const auth = getAuth()
     const userDelete = auth.currentUser
+    const user = auth.currentUser
+
 
     deleteUser(userDelete)
     .then(() => {
@@ -27,11 +30,19 @@ export const logoutAsync = () => {
       console.log(error)
     })
 
-    signOut(auth)
+    signOut(auth, user)
       .then((user) => {
-        console.log('Adios')
+        auth.revokeRefreshTokens(user.uid)
+        .then(() => {
+          return auth.getUser(user.uid);
+        })
+        .then((userRecord) => {
+          return new Date(userRecord.tokensValidAfterTime).getTime() / 1000;
+        })
+        .then((timestamp) => {
+          console.log(`Tokens revoked at: ${timestamp}`);
+        })
         dispatch(logout())
-
       })
       .catch(error => {
         console.warn(error)
@@ -44,6 +55,7 @@ export const logout = () => {
     type: typesLogin.logout
   }
 }
+
 
 //---------- Obtener Perfil Usuario con Firebase ----------//
 export const getProfile = () => {
@@ -109,23 +121,36 @@ export const loginFacebook = () => {
 }
 
 //---------- Para registrar en Firebase ----------//
-export const registroAsync = (name, email, nickname, password) => {
+export const registroAsync = (name, email, password) => {
   return (dispatch) => {
     const auth = getAuth()
-    createUserWithEmailAndPassword(auth, name, email, nickname, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then(async ({ user }) => {
-        await updateProfile(auth.currentUser, { displayName: nickname })
-        dispatch(registroSync(name, email, nickname, password))
-        alert('Usuario Registrado de manera exitosa')
+        await updateProfile(auth.currentUser, { displayName: name})
+        if (user !== null) {
+          const emailVerified = user.emailVerified
+          if(emailVerified === false){
+            sendEmailVerification(user)
+            .then(() => {
+              console.log('Email enviado')
+            })
+            .catch(error => {
+              console.warn(error)
+            })
+          } else{
+            console.log('Verificado')
+          }
+        }
+        dispatch(registroSync(user.email, user.uid, user.displayName))
       })
   }
 }
 
-export const registroSync = (name, email, nickname, password) => {
+export const registroSync = (name, email, password) => {
   return {
-    type: typesLogin.registro,
+    type: typesLogin.register,
     payload: {
-      name, email, nickname, password
+      name, email, password
     }
   }
 }
