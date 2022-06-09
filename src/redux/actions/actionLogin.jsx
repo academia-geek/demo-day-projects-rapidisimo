@@ -20,6 +20,8 @@ export const logoutAsync = () => {
   return (dispatch) => {
     const auth = getAuth()
     const userDelete = auth.currentUser
+    const user = auth.currentUser
+
 
     deleteUser(userDelete)
     .then(() => {
@@ -28,11 +30,19 @@ export const logoutAsync = () => {
       console.log(error)
     })
 
-    signOut(auth)
+    signOut(auth, user)
       .then((user) => {
-        console.log('Adios')
+        auth.revokeRefreshTokens(user.uid)
+        .then(() => {
+          return auth.getUser(user.uid);
+        })
+        .then((userRecord) => {
+          return new Date(userRecord.tokensValidAfterTime).getTime() / 1000;
+        })
+        .then((timestamp) => {
+          console.log(`Tokens revoked at: ${timestamp}`);
+        })
         dispatch(logout())
-
       })
       .catch(error => {
         console.warn(error)
@@ -45,6 +55,7 @@ export const logout = () => {
     type: typesLogin.logout
   }
 }
+
 
 //---------- Obtener Perfil Usuario con Firebase ----------//
 export const getProfile = () => {
