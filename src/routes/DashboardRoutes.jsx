@@ -11,7 +11,6 @@ const DashboardRoutes = () => {
 				<Route path="/repartidor" element={<Repartidor />} />
 				<Route path="/*" element={<Navigate to="/" />} />
 			</Routes>
-
 		</>
 	);
 };
