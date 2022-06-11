@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
+// Utils
+import clientRapidisimo from "../utils/client.js";
+
 // Material UI
 import { Avatar } from "@mui/material";
 
@@ -41,9 +44,16 @@ const ListarComercios = () => {
   const [comercios, setComercios] = useState([]);
 
   const fetchComercios = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_HOST}/allCompanies/`);
-    const data = await response.json();
-    setComercios(data);
+    try {
+      const { data } = await clientRapidisimo({
+        method: "GET",
+        url: "/allCompanies/",
+      });
+      setComercios(data);
+    }
+    catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
