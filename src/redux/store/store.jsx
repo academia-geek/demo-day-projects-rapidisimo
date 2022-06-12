@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 
 // Reducers
 import { reducerLogin } from "../reducers/reducerLogin";
+import { reducerOrdenes } from "../reducers/reducerOrdenes";
 
 const composeEnhancers =
   (typeof window !== "undefined" &&
@@ -12,9 +13,10 @@ const composeEnhancers =
 
 const reducers = combineReducers({
   user: reducerLogin,
+  ordenes: reducerOrdenes,
 });
 
 export const store = createStore(
   reducers,
-  composeEnhancers(applyMiddleware(thunk))
+  applyMiddleware(thunk)
 );

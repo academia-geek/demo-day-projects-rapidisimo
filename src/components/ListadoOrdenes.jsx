@@ -1,5 +1,16 @@
 // Base
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import {
+actualizarModalOrden,
+actualizarOrden,
+listarOrdenes
+} from '../redux/actions/actionOrdenes';
+
+// Utils
+import clientRapidisimo from "../utils/client.js";
 
 // Components
 import DialogOrdenDetalle from "./DialogOrdenDetalle";
@@ -23,11 +34,30 @@ import {
 import AddLocationAltOutlinedIcon from "@mui/icons-material/AddLocationAltOutlined";
 
 const ListadoOrdenes = () => {
-  const [abrir, setAbrir] = useState(false);
+  const dispatch = useDispatch()
+  const { listaOrdenes }  = useSelector((state) => state.ordenes)
 
-  const handleClickOpen = () => {
-    setAbrir(!abrir);
-  };
+  const handleAbrirModal = (orden) => {
+    dispatch(actualizarModalOrden(true))
+    dispatch(actualizarOrden(orden))
+  }
+
+  const fetchOrdenes = async () => {
+    try {
+      const { data } = await clientRapidisimo({
+        method: "GET",
+        url: "/allOrders/",
+      });
+      dispatch(listarOrdenes(data))
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchOrdenes()
+  },[])
 
   return (
     <div>
@@ -90,24 +120,31 @@ const ListadoOrdenes = () => {
         "
       >
         <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-          <button onClick={() => handleClickOpen()}>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar sx={{ background: "green" }}>
-                  <AddLocationAltOutlinedIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary="Orden de envío 01 - Proto Tech"
-                secondary="Entregado"
-              />
-            </ListItem>
-          </button>
-          <Divider variant="inset" component="li" />
+          {
+            listaOrdenes.map(orden => (
+              <div key={orden.id_order}>
+                <button onClick={() => handleAbrirModal(orden)}>
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar sx={{ background: "green" }}>
+                        <AddLocationAltOutlinedIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={`Orden de envío #${orden.id_order}`}
+                      secondary={orden.status_order}
+                      {...orden}
+                    />
+                  </ListItem>
+                </button>
+                <Divider variant="inset" component="li" />
+              </div>
+            ))
+          }
         </List>
       </section>
 
-      <DialogOrdenDetalle open={abrir} onClose={handleClickOpen} />
+      <DialogOrdenDetalle/>
     </div>
   );
 };

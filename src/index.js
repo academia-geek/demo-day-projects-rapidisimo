@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom';
 
 //Redux
 import { Provider } from 'react-redux';
-import { store } from './redux/store/store';
+import configStore from './redux/store/configStore';
 
 // Components
-import AppRoutes from './/routes/AppRoutes';
+import AppRoutes from './routes/AppRoutes';
 
 
 // Styles
@@ -17,6 +17,7 @@ import './styles/index.css'
 import { ThemeProvider } from '@mui/material/styles'
 import theme from './theme/Material';
 
+const store = configStore();
 
 ReactDOM.render(
   <React.StrictMode>

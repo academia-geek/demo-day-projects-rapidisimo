@@ -1,6 +1,20 @@
 // Base
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react"
+import PropTypes from "prop-types"
+
+// Utils
+import clientRapidisimo from "../utils/client.js";
+import { format } from 'date-fns'
+
+// Redux
+import { useSelector, useDispatch } from "react-redux"
+import {
+  actualizarModalOrden,
+  actualizarLoader,
+  actualizarOrden,
+  listarOrdenes,
+  ordenPorDefecto,
+} from "../redux/actions/actionOrdenes"
 
 // Material UI
 import {
@@ -9,16 +23,21 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
   IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
   Slide,
-} from "@mui/material";
+} from "@mui/material"
 
 // Material UI Icons
-import CloseIcon from "@mui/icons-material/Close";
+import CloseIcon from "@mui/icons-material/Close"
 
 // Styles
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery"
+import { useTheme } from "@mui/material/styles"
+
 
 const TarjetaInfo = ({
   code,
@@ -50,7 +69,7 @@ const TarjetaInfo = ({
           "
         >
           Comercio:
-          <span className="ml-1 font-light">{commerce}</span>
+          <span className="ml-1 font-light">Zipol</span>
         </li>
         <li
           className="
@@ -60,7 +79,7 @@ const TarjetaInfo = ({
           "
         >
           Fecha de solicitud:
-          <span className="ml-1 font-light">{date}</span>
+          <span className="ml-1 font-light">{format(new Date(date), 'dd/MM/yyyy')}</span>
         </li>
         <li
           className="
@@ -104,21 +123,67 @@ const TarjetaInfo = ({
         </li>
       </ul>
     </aside>
-  );
-};
+  )
+}
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+  return <Slide direction="up" ref={ref} {...props} />
+})
 
-const DialogOrdenDetalle = ({ open, onClose, nameOrder }) => {
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+const DialogOrdenDetalle = ({ nameOrder }) => {
+  const dispatch = useDispatch()
+  const {modalOrden, ordenActual, listaOrdenes, loader} = useSelector((state) => state.ordenes)
+
+  const theme = useTheme()
+
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"))
+  const onClose = () => {
+    dispatch(actualizarModalOrden(false))
+    dispatch(ordenPorDefecto())
+  }
+
+  const [estadoOrden] = useState([
+    {id: 'uno', name: 'En espera', value: 'En espera'},
+    {id: 'dos', name: 'En reparto', value: 'En reparto'},
+    {id: 'tres', name: 'Entregado', value: 'Entregado'},
+  ])
+
+  const handleCambiarEstadoOrden = (e) => {
+    dispatch(actualizarOrden({status_order: e.target.value}))
+  }
+
+  const putOrden = async () => {
+    try {
+      const {id_order, _id_tracking, ...payload} = ordenActual
+      dispatch(actualizarLoader(true))
+      await clientRapidisimo({
+        method: "PUT",
+        url: `/putOrder/${ordenActual.id_order}`,
+        data: payload
+      });
+      const nuevaLista = listaOrdenes.map((orden) => {
+        return orden.id_order === id_order ? ordenActual : orden
+      })
+
+      dispatch(listarOrdenes(nuevaLista))
+      onClose()
+    }
+    catch (error) {
+      console.log(error)
+    }
+    finally {
+      dispatch(actualizarLoader(false))
+    }
+  }
+
+  const handleAsignarOrden = (e) => {
+    putOrden()
+  }
 
   return (
     <div>
       <Dialog
-        open={open}
+        open={modalOrden}
         fullScreen={fullScreen}
         maxWidth="md"
         fullWidth
@@ -144,23 +209,56 @@ const DialogOrdenDetalle = ({ open, onClose, nameOrder }) => {
         </DialogTitle>
 
         <DialogContent sx={{ padding: "0 16px" }}>
-          <TarjetaInfo />
+          <TarjetaInfo
+            code={ordenActual._id_tracking}
+            date = {ordenActual.date_delivery}
+            pickupLocation = {ordenActual.client_address}
+            {...ordenActual}
+          />
 
           {/* TODO: Agregar Mapa */}
+
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Estado</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={ordenActual.status_order}
+              label="Estado"
+              onChange={handleCambiarEstadoOrden}
+            >
+              {
+                estadoOrden.map(estado => (
+                  <MenuItem key={estado.id} value={estado.value}>
+                    {estado.name}
+                  </MenuItem>
+                ))
+              }
+            </Select>
+          </FormControl>
         </DialogContent>
 
         <DialogActions>
           <Button onClick={onClose} color="secondary">
             Cancelar
           </Button>
-          <Button variant="contained" color="secondary">
-            Comenzar
+          <Button
+            disabled={loader}
+            loading={loader}
+            loadingIndicator="Enviando..."
+            onClick={handleAsignarOrden}
+            variant="contained"
+            color="secondary"
+          >
+            {
+              loader ? 'Enviando...' : 'Asignar'
+            }
           </Button>
         </DialogActions>
       </Dialog>
     </div>
-  );
-};
+  )
+}
 
 TarjetaInfo.propTypes = {
   code: PropTypes.string,
@@ -170,24 +268,24 @@ TarjetaInfo.propTypes = {
   placeDelivery: PropTypes.string,
   deliveryTime: PropTypes.string,
   pickUpTimes: PropTypes.string,
-};
+}
 
 TarjetaInfo.defaultProps = {
   code: "0o9i8u7y6",
   commerce: "Zipol",
-  date: "12/12/2020",
+  date: "2020-05-01T00:00:00.000Z",
   pickupLocation: "Calle 153 # 104 - 18 - Medellin",
   placeDelivery: "Carrera 18 # 134 - 65 - Medellin",
   deliveryTime: "7:00am hasta 5:30pm",
   pickUpTimes: "Inmediato",
-};
+}
 
 DialogOrdenDetalle.propTypes = {
   nameOrder: PropTypes.string,
-};
+}
 
 DialogOrdenDetalle.defaultProps = {
   nameOrder: "Orden de envío 02",
-};
+}
 
-export default DialogOrdenDetalle;
+export default DialogOrdenDetalle
