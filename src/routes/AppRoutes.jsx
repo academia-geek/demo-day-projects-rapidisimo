@@ -51,7 +51,7 @@ const AppRoutes = () => {
         <Route
           path="/login"
           element={
-            <PublicRoutes isAuth={true}>
+            <PublicRoutes isAuth={isLoggedIn}>
               <Login />
             </PublicRoutes>
           }
@@ -59,7 +59,7 @@ const AppRoutes = () => {
         <Route
           path="/register"
           element={
-            <PublicRoutes isAuth={true}>
+            <PublicRoutes isAuth={isLoggedIn}>
               <Register />
             </PublicRoutes>
           }
@@ -67,7 +67,7 @@ const AppRoutes = () => {
         <Route
           path="/*"
           element={
-            <PrivateRoutes isAuth={true}>
+            <PrivateRoutes isAuth={isLoggedIn}>
               <DashboardRoutes />
             </PrivateRoutes>
           }
