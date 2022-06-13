@@ -3,8 +3,8 @@ import React, { useState } from "react"
 import PropTypes from "prop-types"
 
 // Utils
-import clientRapidisimo from "../utils/client.js";
-import { format } from 'date-fns'
+import clientRapidisimo from "../utils/client.js"
+import { format } from "date-fns"
 
 // Redux
 import { useSelector, useDispatch } from "react-redux"
@@ -37,7 +37,6 @@ import CloseIcon from "@mui/icons-material/Close"
 // Styles
 import useMediaQuery from "@mui/material/useMediaQuery"
 import { useTheme } from "@mui/material/styles"
-
 
 const TarjetaInfo = ({
   code,
@@ -79,7 +78,9 @@ const TarjetaInfo = ({
           "
         >
           Fecha de solicitud:
-          <span className="ml-1 font-light">{format(new Date(date), 'dd/MM/yyyy')}</span>
+          <span className="ml-1 font-light">
+            {format(new Date(date), "dd/MM/yyyy")}
+          </span>
         </li>
         <li
           className="
@@ -132,7 +133,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const DialogOrdenDetalle = ({ nameOrder }) => {
   const dispatch = useDispatch()
-  const {modalOrden, ordenActual, listaOrdenes, loader} = useSelector((state) => state.ordenes)
+  const { modalOrden, ordenActual, listaOrdenes, loader } = useSelector(
+    (state) => state.ordenes
+  )
 
   const theme = useTheme()
 
@@ -143,35 +146,33 @@ const DialogOrdenDetalle = ({ nameOrder }) => {
   }
 
   const [estadoOrden] = useState([
-    {id: 'uno', name: 'En espera', value: 'En espera'},
-    {id: 'dos', name: 'En reparto', value: 'En reparto'},
-    {id: 'tres', name: 'Entregado', value: 'Entregado'},
+    { id: "uno", name: "En espera", value: "En espera" },
+    { id: "dos", name: "En reparto", value: "En reparto" },
+    { id: "tres", name: "Entregado", value: "Entregado" },
   ])
 
   const handleCambiarEstadoOrden = (e) => {
-    dispatch(actualizarOrden({status_order: e.target.value}))
+    dispatch(actualizarOrden({ status_order: e.target.value }))
   }
 
   const putOrden = async () => {
     try {
-      const {id_order, _id_tracking, ...payload} = ordenActual
+      const { id_order, _id_tracking, ...payload } = ordenActual
       dispatch(actualizarLoader(true))
       await clientRapidisimo({
         method: "PUT",
         url: `/putOrder/${ordenActual.id_order}`,
-        data: payload
-      });
+        data: payload,
+      })
       const nuevaLista = listaOrdenes.map((orden) => {
         return orden.id_order === id_order ? ordenActual : orden
       })
 
       dispatch(listarOrdenes(nuevaLista))
       onClose()
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error)
-    }
-    finally {
+    } finally {
       dispatch(actualizarLoader(false))
     }
   }
@@ -211,8 +212,8 @@ const DialogOrdenDetalle = ({ nameOrder }) => {
         <DialogContent sx={{ padding: "0 16px" }}>
           <TarjetaInfo
             code={ordenActual._id_tracking}
-            date = {ordenActual.date_delivery}
-            pickupLocation = {ordenActual.client_address}
+            date={ordenActual.date_delivery}
+            pickupLocation={ordenActual.client_address}
             {...ordenActual}
           />
 
@@ -227,13 +228,11 @@ const DialogOrdenDetalle = ({ nameOrder }) => {
               label="Estado"
               onChange={handleCambiarEstadoOrden}
             >
-              {
-                estadoOrden.map(estado => (
-                  <MenuItem key={estado.id} value={estado.value}>
-                    {estado.name}
-                  </MenuItem>
-                ))
-              }
+              {estadoOrden.map((estado) => (
+                <MenuItem key={estado.id} value={estado.value}>
+                  {estado.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </DialogContent>
@@ -250,9 +249,7 @@ const DialogOrdenDetalle = ({ nameOrder }) => {
             variant="contained"
             color="secondary"
           >
-            {
-              loader ? 'Enviando...' : 'Asignar'
-            }
+            {loader ? "Enviando..." : "Asignar"}
           </Button>
         </DialogActions>
       </Dialog>
