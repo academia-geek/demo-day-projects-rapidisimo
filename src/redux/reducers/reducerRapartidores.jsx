@@ -1,0 +1,1 @@
+import { typesRepartidor } from "../types/typesRepartidor";

@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+// Firebase
+
 const clientRapidisimo = axios.create ({
   baseURL: process.env.REACT_APP_API_HOST || 'http://localhost:3000',
   headers: {

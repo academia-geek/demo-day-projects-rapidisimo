@@ -7,14 +7,17 @@ export const reducerLogin = (state = {}, action) => {
 				user: action.payload.user,
 				pass: action.payload.pass
 			}
+
 		case typesLogin.register:
 			return {
 				name: action.payload.name,
 				email: action.payload.email,
 				password: action.payload.password,
 			}
+
 		case typesLogin.logout:
 			return {}
+
 		default:
 			return state
 	}

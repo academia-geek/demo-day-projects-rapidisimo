@@ -1,5 +1,5 @@
 // Base
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,9 @@ import clientRapidisimo from "../utils/client.js";
 
 // Components
 import DialogOrdenDetalle from "./DialogOrdenDetalle";
+
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 // Material UI
 import {
@@ -42,11 +45,31 @@ const ListadoOrdenes = () => {
     dispatch(actualizarOrden(orden))
   }
 
+  const [token, setToken] = useState('');
+
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user?.uid) {
+      user.getIdToken()
+      .then((token) => {
+        setToken(token);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    } else {
+      console.log("No estas logueado")
+    }
+  });
+
   const fetchOrdenes = async () => {
     try {
       const { data } = await clientRapidisimo({
         method: "GET",
         url: "/allOrders/",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
       });
       dispatch(listarOrdenes(data))
     }
@@ -57,7 +80,7 @@ const ListadoOrdenes = () => {
 
   useEffect(() => {
     fetchOrdenes()
-  },[])
+  },[token])
 
   return (
     <div>
