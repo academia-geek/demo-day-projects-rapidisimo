@@ -5,18 +5,18 @@ import { getFirestore } from "firebase/firestore"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
-  appId: process.env.REACT_APP_FIREBASE_APPID
+  apiKey: "AIzaSyDa3u_6oJQaFtn2n5EbwYHFYpMIknmZilE",
+  authDomain: "rapidisimoproject.firebaseapp.com",
+  projectId: "rapidisimoproject",
+  storageBucket: "rapidisimoproject.appspot.com",
+  messagingSenderId: "905464710593",
+  appId: "1:905464710593:web:a8fc0969d4a3ef8d9ddb40"
 }
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const google = new GoogleAuthProvider();
-const facebook = new FacebookAuthProvider();
-const DB = getFirestore();
+const app = initializeApp(firebaseConfig)
+const google = new GoogleAuthProvider()
+const facebook = new FacebookAuthProvider()
+const DB = getFirestore()
 
 export { app, google, DB, facebook}
