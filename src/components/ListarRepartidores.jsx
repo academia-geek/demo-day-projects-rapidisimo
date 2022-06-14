@@ -1,10 +1,20 @@
 // Base
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
 
-const RepartidorPerfil = ({ nameDealer, image }) => {
+// Redux
+import { useDispatch, useSelector } from "react-redux"
+import { getAuth, onAuthStateChanged } from "firebase/auth"
+import clientRapidisimo from "../utils/client"
+import { actualizarRepartidor, listarRepartidores, modalDetalleRepartidor } from "../redux/actions/actionsRepartidor"
+import DialogPerfilRepartidor from "./DialogPerfilRepartidor"
+
+const RepartidorPerfil = ({ nameDealer, lastNameDealer, image, onClick }) => {
   return (
-    <div className="w-20 h-auto text-center">
+    <div
+      className="w-20 h-auto text-center cursor-pointer"
+      onClick={onClick}
+    >
       <section
         className="
           flex items-center justify-center
@@ -19,14 +29,63 @@ const RepartidorPerfil = ({ nameDealer, image }) => {
         />
       </section>
 
-      <p className="mb-0 text-base text-ellipsis overflow-hidden">
+      <p className="mb-0 text-sm text-ellipsis overflow-hidden">
         {nameDealer}
+        <span className="ml-1">{lastNameDealer}</span>
       </p>
     </div>
-  );
-};
+  )
+}
 
 const ListarRepartidores = () => {
+  const dispatch = useDispatch()
+  const { listaRepartidores } = useSelector((state) => state.repartidores)
+
+  const handleAbrirModalRepartidor = (repartidor) => {
+    dispatch(modalDetalleRepartidor(true))
+    dispatch(actualizarRepartidor(repartidor))
+  }
+
+
+  const [token, setToken] = useState('')
+
+  const auth = getAuth()
+  onAuthStateChanged(auth, (user) => {
+    if (user?.uid) {
+      user.getIdToken()
+        .then((token) => {
+          setToken(token)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    } else {
+      console.log("No estas logueado")
+    }
+  })
+
+  const fetchRepartidores = async () => {
+    try {
+      const { data } = await clientRapidisimo({
+        method: "GET",
+        url: "/allUsers/",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      })
+      dispatch(listarRepartidores(data))
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchRepartidores()
+  }, [token])
+
+  const repartidores = listaRepartidores.filter((repartidor) => { return repartidor.rol === 'Delivery man' })
+
   return (
     <div className="w-full h-auto mb-6">
       <section className="flex items-center gap-4 mb-4">
@@ -48,20 +107,38 @@ const ListarRepartidores = () => {
       </section>
 
       <section className="scroll-app flex flex-nowrap gap-6 overflow-y-auto">
-        <RepartidorPerfil />
+        {
+          repartidores.map((repartidor) => (
+            <RepartidorPerfil
+              key={repartidor.id_user}
+              onClick={() => handleAbrirModalRepartidor(repartidor)}
+              nameDealer={repartidor.name}
+              lastNameDealer={repartidor.lastname}
+              image={ repartidor.user_image === ' ' || null
+                ? 'https://res.cloudinary.com/rapidisimo/image/upload/v1655160552/rapidisimo/person_box_phs8c3.png'
+                : repartidor.user_image
+              }
+              {...repartidor}
+            />
+          ))
+        }
       </section>
+
+      <DialogPerfilRepartidor />
     </div>
-  );
-};
+  )
+}
 
 RepartidorPerfil.propTypes = {
   nameDealer: PropTypes.string,
+  lastNameDealer: PropTypes.string,
   image: PropTypes.string,
-};
+}
 
 RepartidorPerfil.defaultProps = {
   nameDealer: "Repartidor",
+  lastNameDealer: "Repartidor",
   image: "https://picsum.photos/200/300",
-};
+}
 
-export default ListarRepartidores;
+export default ListarRepartidores
