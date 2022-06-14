@@ -45,32 +45,12 @@ const ComercioPerfil = ({ nameCommerce, email }) => {
 
 const ListarComercios = () => {
   const [comercios, setComercios] = useState([]);
-  const [token, setToken] = useState('');
-
-  const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user?.uid) {
-      user.getIdToken()
-      .then((token) => {
-        setToken(token);
-        console.log(token);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-    } else {
-      console.log("No estas logueado")
-    }
-  });
 
   const fetchComercios = async () => {
     try {
       const { data } = await clientRapidisimo({
         method: "GET",
         url: "/allCompanies/",
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
       });
       setComercios(data);
     }
@@ -81,7 +61,7 @@ const ListarComercios = () => {
 
   useEffect(() => {
     fetchComercios();
-  }, [token]);
+  }, []);
 
   return (
     <div className="w-full h-auto mb-6">
