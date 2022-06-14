@@ -1,10 +1,9 @@
 // Base
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 
 // Redux
 import { useDispatch, useSelector } from "react-redux"
-import { getAuth, onAuthStateChanged } from "firebase/auth"
 import clientRapidisimo from "../utils/client"
 import { actualizarRepartidor, listarRepartidores, modalDetalleRepartidor } from "../redux/actions/actionsRepartidor"
 import DialogPerfilRepartidor from "./DialogPerfilRepartidor"
@@ -46,32 +45,11 @@ const ListarRepartidores = () => {
     dispatch(actualizarRepartidor(repartidor))
   }
 
-
-  const [token, setToken] = useState('')
-
-  const auth = getAuth()
-  onAuthStateChanged(auth, (user) => {
-    if (user?.uid) {
-      user.getIdToken()
-        .then((token) => {
-          setToken(token)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    } else {
-      console.log("No estas logueado")
-    }
-  })
-
   const fetchRepartidores = async () => {
     try {
       const { data } = await clientRapidisimo({
         method: "GET",
         url: "/allUsers/",
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
       })
       dispatch(listarRepartidores(data))
     }
@@ -82,7 +60,7 @@ const ListarRepartidores = () => {
 
   useEffect(() => {
     fetchRepartidores()
-  }, [token])
+  }, [])
 
   const repartidores = listaRepartidores.filter((repartidor) => { return repartidor.rol === 'Delivery man' })
 
