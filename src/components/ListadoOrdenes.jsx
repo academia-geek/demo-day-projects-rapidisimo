@@ -123,7 +123,10 @@ const ListadoOrdenes = () => {
           {
             listaOrdenes.map(orden => (
               <div key={orden.id_order}>
-                <button onClick={() => handleAbrirModal(orden)}>
+                <button
+                  onClick={() => handleAbrirModal(orden)}
+                  className="w-full"
+                >
                   <ListItem>
                     <ListItemAvatar>
                       <Avatar sx={{ background: "green" }}>
