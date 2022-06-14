@@ -1,14 +1,14 @@
 // Base
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
 // Redux
-import { useDispatch } from "react-redux";
-import { registroAsync } from "../redux/actions/actionLogin";
+import { useDispatch } from "react-redux"
+import { registroAsync } from "../redux/actions/actionLogin"
 
 // Formik
-import { Field, Form, Formik } from "formik";
-import * as Yup from "yup";
+import { Field, Form, Formik } from "formik"
+import * as Yup from "yup"
 
 
 const SingUpSchema = Yup.object().shape({
@@ -23,10 +23,10 @@ const SingUpSchema = Yup.object().shape({
     .min(6, "Clave muy corta!")
     .max(30, "Valor de clave muy largo!")
     .required("Campo sin información"),
-});
+})
 
 const Register = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   return (
     <div
@@ -64,7 +64,10 @@ const Register = () => {
             </Link>
 
             <Link
-              className="text-start underline underline-offset-8 decoration-primary"
+              className="
+                text-start underline underline-offset-8
+                decoration-primary
+              "
               to="/register"
             >
               Registro
@@ -85,7 +88,7 @@ const Register = () => {
                   values.email,
                   values.password
                 )
-              );
+              )
             }}
           >
             {({ errors, touched, handleReset, handleSubmit }) => (
@@ -176,7 +179,7 @@ const Register = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

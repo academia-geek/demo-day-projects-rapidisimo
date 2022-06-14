@@ -291,6 +291,6 @@ DialogOrdenDetalle.propTypes = {
 
 DialogOrdenDetalle.defaultProps = {
   nameOrder: "Orden de envío 02",
-} 
+}
 
 export default DialogOrdenDetalle

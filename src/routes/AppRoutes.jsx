@@ -1,40 +1,40 @@
 // Base
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 // Firebase
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth"
 
 // Pages
-import Register from "../pages/Register";
-import Login from "../pages/Login";
+import Register from "../pages/Register"
+import Login from "../pages/Login"
 
 // Componentes
-import { PrivateRoutes, PublicRoutes } from "./PublicAndPrivateRoutes";
-import DashboardRoutes from "./DashboardRoutes";
+import { PrivateRoutes, PublicRoutes } from "./PublicAndPrivateRoutes"
+import DashboardRoutes from "./DashboardRoutes"
 
 // Material UI
-import { CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material"
 
 const AppRoutes = () => {
-  const [checkIn, setCheckIn] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [checkIn, setCheckIn] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   useEffect(() => {
-    const auth = getAuth();
+    const auth = getAuth()
     onAuthStateChanged(auth, (user) => {
       if (user?.uid) {
-        setIsLoggedIn(true);
+        setIsLoggedIn(true)
         user.getIdToken()
-        .then((token) => {
-          window.localStorage.setItem('token', token);
-        })
-        .catch((error) => {})
+          .then((token) => {
+            window.localStorage.setItem('token', token)
+          })
+          .catch((error) => { })
       } else {
-        setIsLoggedIn(false);
+        setIsLoggedIn(false)
       }
-      setCheckIn(false);
-    });
-  }, [setIsLoggedIn, setCheckIn]);
+      setCheckIn(false)
+    })
+  }, [setIsLoggedIn, setCheckIn])
   if (checkIn) {
     return (
       <div
@@ -76,7 +76,7 @@ const AppRoutes = () => {
         />
       </Routes>
     </BrowserRouter>
-  );
-};
+  )
+}
 
-export default AppRoutes;
+export default AppRoutes

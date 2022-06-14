@@ -1,6 +1,6 @@
 // Base
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
 
 // Material UI
 import {
@@ -13,14 +13,14 @@ import {
   IconButton,
   Slide,
   TextField,
-} from "@mui/material";
+} from "@mui/material"
 
 // Material UI Icons
-import CloseIcon from "@mui/icons-material/Close";
+import CloseIcon from "@mui/icons-material/Close"
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+  return <Slide direction="up" ref={ref} {...props} />
+})
 
 const DialogOrdenRepartidor = ({
   state,
@@ -202,8 +202,8 @@ const DialogOrdenRepartidor = ({
         </DialogActions>
       </Dialog>
     </div>
-  );
-};
+  )
+}
 
 DialogOrdenRepartidor.propTypes = {
   state: PropTypes.string,
@@ -214,7 +214,7 @@ DialogOrdenRepartidor.propTypes = {
   placeDelivery: PropTypes.string,
   deliveryTime: PropTypes.string,
   pickUpTimes: PropTypes.string,
-};
+}
 
 DialogOrdenRepartidor.defaultProps = {
   state: "En espera",
@@ -225,6 +225,6 @@ DialogOrdenRepartidor.defaultProps = {
   placeDelivery: "Carrera 18 # 134 - 65 - Medellin",
   deliveryTime: "7:00am hasta 5:30pm",
   pickUpTimes: "Inmediato",
-};
+}
 
-export default DialogOrdenRepartidor;
+export default DialogOrdenRepartidor

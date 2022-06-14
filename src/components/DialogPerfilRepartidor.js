@@ -8,16 +8,10 @@ import { modalDetalleRepartidor } from '../redux/actions/actionsRepartidor'
 
 // Material UI
 import {
-  Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
-  FormControl,
   IconButton,
-  InputLabel,
-  MenuItem,
-  Select,
   Slide,
 } from "@mui/material"
 
@@ -119,6 +113,7 @@ const DialogPerfilRepartidor = ({ name, rol, email, status }) => {
             Ordenes Asignadas
           </h3>
 
+          {/* TODO: Agregar Lista de ordenes asignadas */}
         </section>
       </DialogContent>
     </Dialog>

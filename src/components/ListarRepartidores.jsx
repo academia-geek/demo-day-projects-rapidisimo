@@ -2,10 +2,18 @@
 import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 
+// Utils
+import clientRapidisimo from "../utils/client"
+
 // Redux
 import { useDispatch, useSelector } from "react-redux"
-import clientRapidisimo from "../utils/client"
-import { actualizarRepartidor, listarRepartidores, modalDetalleRepartidor } from "../redux/actions/actionsRepartidor"
+import {
+  actualizarRepartidor,
+  modalDetalleRepartidor,
+  listarRepartidores
+} from "../redux/actions/actionsRepartidor"
+
+// Components
 import DialogPerfilRepartidor from "./DialogPerfilRepartidor"
 
 const RepartidorPerfil = ({ nameDealer, lastNameDealer, image, onClick }) => {
@@ -92,7 +100,7 @@ const ListarRepartidores = () => {
               onClick={() => handleAbrirModalRepartidor(repartidor)}
               nameDealer={repartidor.name}
               lastNameDealer={repartidor.lastname}
-              image={ repartidor.user_image === ' ' || null
+              image={repartidor.user_image === ' ' || null
                 ? 'https://res.cloudinary.com/rapidisimo/image/upload/v1655160552/rapidisimo/person_box_phs8c3.png'
                 : repartidor.user_image
               }

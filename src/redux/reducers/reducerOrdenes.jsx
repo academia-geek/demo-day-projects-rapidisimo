@@ -1,4 +1,4 @@
-import { typesOrdenes } from "../types/typesOrdenes";
+import { typesOrdenes } from "../types/typesOrdenes"
 
 const initialState = {
   listaOrdenes: [],
@@ -58,10 +58,10 @@ export const reducerOrdenes = (state = initialState, action) => {
     case typesOrdenes.actualizarLoader:
       return {
         ...state,
-        loader : action.payload
+        loader: action.payload
       }
 
     default:
-      return state;
+      return state
   }
 }

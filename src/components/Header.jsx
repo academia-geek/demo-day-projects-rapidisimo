@@ -1,12 +1,12 @@
 // Base
-import * as React from "react";
-import PropTypes from "prop-types";
+import * as React from "react"
+import PropTypes from "prop-types"
 
 // Material UI
-import Badge from '@mui/material/Badge';
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import Badge from '@mui/material/Badge'
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
 
-const Header = ({nameUser}) => {
+const Header = ({ nameUser }) => {
   return (
     <div className="flex items-center gap-3 w-full h-auto mb-6">
       <h2 className="text-2xl md:text-3xl font-semibold">
@@ -16,19 +16,18 @@ const Header = ({nameUser}) => {
         </span>
       </h2>
       <Badge badgeContent={4} color="error">
-        <NotificationsOutlinedIcon sx={{ fontSize: 30 }}/>
+        <NotificationsOutlinedIcon sx={{ fontSize: 30 }} />
       </Badge>
     </div>
   )
 }
 
 Header.propTypes = {
-  nameUser: PropTypes.string,
-};
+  nameUser: PropTypes.string
+}
 
 Header.defaultProps = {
-  nameUser: "Administrador",
-};
-
+  nameUser: "Administrador"
+}
 
 export default Header
