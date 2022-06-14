@@ -1,19 +1,19 @@
 // Base
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react"
 
 // Redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"
 import {
-actualizarModalOrden,
-actualizarOrden,
-listarOrdenes
-} from '../redux/actions/actionOrdenes';
+  actualizarModalOrden,
+  actualizarOrden,
+  listarOrdenes
+} from '../redux/actions/actionOrdenes'
 
 // Utils
-import clientRapidisimo from "../utils/client.js";
+import clientRapidisimo from "../utils/client.js"
 
 // Components
-import DialogOrdenDetalle from "./DialogOrdenDetalle";
+import DialogOrdenDetalle from "./DialogOrdenDetalle"
 
 // Material UI
 import {
@@ -28,14 +28,14 @@ import {
   ListItemAvatar,
   Select,
   TextField,
-} from "@mui/material";
+} from "@mui/material"
 
 // Material UI Icons
-import AddLocationAltOutlinedIcon from "@mui/icons-material/AddLocationAltOutlined";
+import AddLocationAltOutlinedIcon from "@mui/icons-material/AddLocationAltOutlined"
 
 const ListadoOrdenes = () => {
   const dispatch = useDispatch()
-  const { listaOrdenes }  = useSelector((state) => state.ordenes)
+  const { listaOrdenes } = useSelector((state) => state.ordenes)
 
   const handleAbrirModal = (orden) => {
     dispatch(actualizarModalOrden(true))
@@ -47,17 +47,17 @@ const ListadoOrdenes = () => {
       const { data } = await clientRapidisimo({
         method: "GET",
         url: "/allOrders/",
-      });
+      })
       dispatch(listarOrdenes(data))
     }
     catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
 
   useEffect(() => {
     fetchOrdenes()
-  },[])
+  }, [])
 
   return (
     <div>
@@ -144,9 +144,9 @@ const ListadoOrdenes = () => {
         </List>
       </section>
 
-      <DialogOrdenDetalle/>
+      <DialogOrdenDetalle />
     </div>
-  );
-};
+  )
+}
 
-export default ListadoOrdenes;
+export default ListadoOrdenes

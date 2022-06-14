@@ -1,18 +1,15 @@
 // Base
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
 
 // Utils
-import clientRapidisimo from "../utils/client.js";
-
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import clientRapidisimo from "../utils/client.js"
 
 // Material UI
-import { Avatar } from "@mui/material";
+import { Avatar } from "@mui/material"
 
 // Material UI Icons
-import StoreMallDirectoryOutlinedIcon from "@mui/icons-material/StoreMallDirectoryOutlined";
-import { useDispatch } from "react-redux";
+import StoreMallDirectoryOutlinedIcon from "@mui/icons-material/StoreMallDirectoryOutlined"
 
 const ComercioPerfil = ({ nameCommerce, email }) => {
   return (
@@ -40,28 +37,28 @@ const ComercioPerfil = ({ nameCommerce, email }) => {
         </p>
       </section>
     </div>
-  );
-};
+  )
+}
 
 const ListarComercios = () => {
-  const [comercios, setComercios] = useState([]);
+  const [comercios, setComercios] = useState([])
 
   const fetchComercios = async () => {
     try {
       const { data } = await clientRapidisimo({
         method: "GET",
         url: "/allCompanies/",
-      });
-      setComercios(data);
+      })
+      setComercios(data)
     }
     catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchComercios();
-  }, []);
+    fetchComercios()
+  }, [])
 
   return (
     <div className="w-full h-auto mb-6">
@@ -70,7 +67,7 @@ const ListarComercios = () => {
       </h4>
 
       <section className="scroll-app flex flex-nowrap gap-4 overflow-y-auto">
-        {comercios.map((comercio,index) => (
+        {comercios.map((comercio, index) => (
           <ComercioPerfil
             key={index}
             nameCommerce={comercio.name_company}
@@ -80,19 +77,19 @@ const ListarComercios = () => {
         ))}
       </section>
     </div>
-  );
-};
+  )
+}
 
 ComercioPerfil.propTypes = {
   nameCommerce: PropTypes.string,
   logo: PropTypes.string,
   email: PropTypes.string,
-};
+}
 
 ComercioPerfil.defaultProps = {
   nameCommerce: "Comercio",
   logo: "https://picsum.photos/200/300",
   email: "compañia@compañia.com",
-};
+}
 
-export default ListarComercios;
+export default ListarComercios

@@ -1,12 +1,12 @@
 // Base
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
 
 // Components
-import DrawerSidebar from "../components/DrawerSidebar";
-import Layout from "../containers/Layout";
-import StarIcon from "@mui/icons-material/Star";
-import ListadoSolicitudesRepartidor from "../components/ListadoSolicitudesRepartidor";
+import DrawerSidebar from "../components/DrawerSidebar"
+import Layout from "../containers/Layout"
+import StarIcon from "@mui/icons-material/Star"
+import ListadoSolicitudesRepartidor from "../components/ListadoSolicitudesRepartidor"
 
 const InfoRepartidor = ({ services, distance, rating }) => {
   return (
@@ -42,19 +42,19 @@ const InfoRepartidor = ({ services, distance, rating }) => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
 const Repartidor = (
-{
-  code,
-  commerce,
-  date,
-  pickupLocation,
-  placeDelivery,
-  deliveryTime,
-  pickUpTimes,
-}) => {
+  {
+    code,
+    commerce,
+    date,
+    pickupLocation,
+    placeDelivery,
+    deliveryTime,
+    pickUpTimes,
+  }) => {
   return (
     <div className="w-full h-screen">
       <DrawerSidebar
@@ -68,22 +68,22 @@ const Repartidor = (
       </DrawerSidebar>
 
       <Layout>
-        <ListadoSolicitudesRepartidor/>
+        <ListadoSolicitudesRepartidor />
       </Layout>
     </div>
-  );
-};
+  )
+}
 
 InfoRepartidor.propTypes = {
   services: PropTypes.string,
   distance: PropTypes.string,
   rating: PropTypes.string,
-};
+}
 
 InfoRepartidor.defaultProps = {
   services: "145",
   distance: "1240",
   rating: "9.6",
-};
+}
 
-export default Repartidor;
+export default Repartidor

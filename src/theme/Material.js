@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles'
-import  { themeGeneral } from './bridge.js'
+import { themeGeneral } from './bridge.js'
 
 // Create a theme instance.
 const theme = createTheme({

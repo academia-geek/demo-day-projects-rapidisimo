@@ -1,6 +1,6 @@
 // Base
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
 
 const Indicadores = ({ title, subtitle }) => {
   return (
@@ -24,8 +24,8 @@ const Indicadores = ({ title, subtitle }) => {
         {subtitle}
       </p>
     </div>
-  );
-};
+  )
+}
 
 const ListadoIndicadores = () => {
   return (
@@ -45,17 +45,17 @@ const ListadoIndicadores = () => {
         <Indicadores />
       </div>
     </div>
-  );
-};
+  )
+}
 
 Indicadores.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
-};
+}
 
 Indicadores.defaultProps = {
   title: "Total de entregas hoy",
   subtitle: "30 Entregas",
-};
+}
 
-export default ListadoIndicadores;
+export default ListadoIndicadores

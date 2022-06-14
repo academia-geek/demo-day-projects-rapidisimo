@@ -1,36 +1,36 @@
 // Base
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux"
 import {
   loginAsync,
   loginGoogle,
   loginFacebook,
-} from "../redux/actions/actionLogin";
+} from "../redux/actions/actionLogin"
 
 // Hook
-import useForm from "../hooks/useForm";
+import useForm from "../hooks/useForm"
 
 // Material Icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
+import FacebookIcon from "@mui/icons-material/Facebook"
+import GoogleIcon from "@mui/icons-material/Google"
 
 const Login = (props) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const [formValue, handleInputChange, reset] = useForm({
     user: "",
     pass: "",
-  });
+  })
 
-  const { user, pass } = formValue;
+  const { user, pass } = formValue
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(loginAsync(user, pass));
-    reset();
-  };
+    e.preventDefault()
+    dispatch(loginAsync(user, pass))
+    reset()
+  }
 
   return (
     <div
@@ -191,7 +191,7 @@ const Login = (props) => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

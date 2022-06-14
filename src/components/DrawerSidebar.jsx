@@ -1,30 +1,38 @@
 // Base
-import * as React from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react"
+import PropTypes from "prop-types"
 
 // Redux
-import { useDispatch } from "react-redux";
-import { logoutAsync } from "../redux/actions/actionLogin";
+import { useDispatch } from "react-redux"
+import { logoutAsync } from "../redux/actions/actionLogin"
 
 // Material UI
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+import Drawer from "@mui/material/Drawer"
+import Button from "@mui/material/Button"
+import IconButton from "@mui/material/IconButton"
 
 // Icons
-import MenuIcon from "@mui/icons-material/Menu";
+import MenuIcon from "@mui/icons-material/Menu"
 
-function DrawerSidebar({children, window, bgColor, btnColor, image, name, role}) {
-  const dispatch = useDispatch();
+function DrawerSidebar({
+  bgColor,
+  btnColor,
+  children,
+  image,
+  name,
+  role,
+  window }) {
 
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const dispatch = useDispatch()
+
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+    setMobileOpen(!mobileOpen)
+  }
 
   const container =
-    window !== undefined ? () => window().document.body : undefined;
+    window !== undefined ? () => window().document.body : undefined
 
   return (
     <>
@@ -177,7 +185,7 @@ function DrawerSidebar({children, window, bgColor, btnColor, image, name, role})
         </Drawer>
       </section>
     </>
-  );
+  )
 }
 
 DrawerSidebar.propTypes = {
@@ -187,14 +195,14 @@ DrawerSidebar.propTypes = {
   image: PropTypes.string,
   name: PropTypes.string,
   role: PropTypes.string,
-};
+}
 
 DrawerSidebar.defaultProps = {
   bgColor: "bg-primary",
   btnColor: "secondary",
-  image:"https://res.cloudinary.com/rapidisimo/image/upload/v1654557867/rapidisimo/logo_logo_1_otcwoh.png",
+  image: "https://res.cloudinary.com/rapidisimo/image/upload/v1654557867/rapidisimo/logo_logo_1_otcwoh.png",
   name: "Administrador",
   role: "Administrador",
-};
+}
 
-export default DrawerSidebar;
+export default DrawerSidebar

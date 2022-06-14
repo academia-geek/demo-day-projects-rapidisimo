@@ -1,8 +1,8 @@
 // Base
-import React, { useState } from "react";
+import React, { useState } from "react"
 
 // Components
-import DialogOrdenRepartidor from "./DialogOrdenRepartidor";
+import DialogOrdenRepartidor from "./DialogOrdenRepartidor"
 
 // Material UI
 import {
@@ -12,17 +12,17 @@ import {
   Divider,
   ListItemText,
   ListItemAvatar,
-} from "@mui/material";
+} from "@mui/material"
 
 // Material UI Icons
-import AddLocationAltOutlinedIcon from "@mui/icons-material/AddLocationAltOutlined";
+import AddLocationAltOutlinedIcon from "@mui/icons-material/AddLocationAltOutlined"
 
 const ListadoSolicitudesRepartidor = () => {
-  const [abrir, setAbrir] = useState(false);
+  const [abrir, setAbrir] = useState(false)
 
   const handleClickOpen = () => {
-    setAbrir(!abrir);
-  };
+    setAbrir(!abrir)
+  }
 
   return (
     <div className="flex flex-col gap-4 w-full h-auto">
@@ -92,7 +92,7 @@ const ListadoSolicitudesRepartidor = () => {
 
       <DialogOrdenRepartidor openModal={abrir} onCloseModal={handleClickOpen} />
     </div>
-  );
-};
+  )
+}
 
-export default ListadoSolicitudesRepartidor;
+export default ListadoSolicitudesRepartidor

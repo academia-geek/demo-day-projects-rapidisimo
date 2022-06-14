@@ -1,7 +1,7 @@
-import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import Home from '../pages/Home';
-import Repartidor from '../pages/Repartidor';
+import React from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import Home from '../pages/Home'
+import Repartidor from '../pages/Repartidor'
 
 const DashboardRoutes = () => {
 	return (
@@ -12,7 +12,7 @@ const DashboardRoutes = () => {
 				<Route path="/*" element={<Navigate to="/" />} />
 			</Routes>
 		</>
-	);
-};
+	)
+}
 
-export default DashboardRoutes;
+export default DashboardRoutes

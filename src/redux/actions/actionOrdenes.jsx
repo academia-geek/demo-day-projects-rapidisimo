@@ -1,5 +1,5 @@
 // Types
-import { typesOrdenes } from "../types/typesOrdenes";
+import { typesOrdenes } from "../types/typesOrdenes"
 
 export const listarOrdenes = (payload) => ({
   type: typesOrdenes.listarOrdenes,

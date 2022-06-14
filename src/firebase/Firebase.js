@@ -17,4 +17,4 @@ const app = initializeApp(firebaseConfig)
 const google = new GoogleAuthProvider()
 const facebook = new FacebookAuthProvider()
 
-export { app, google, facebook}
+export { app, google, facebook }
