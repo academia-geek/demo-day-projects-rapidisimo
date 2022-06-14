@@ -68,7 +68,7 @@ const ListadoOrdenes = () => {
         method: "GET",
         url: "/allOrders/",
         headers: {
-          "Authorization": `Bearer ${token}`
+          "Authorization": `Bearer  ${token}`
         }
       });
       dispatch(listarOrdenes(data))

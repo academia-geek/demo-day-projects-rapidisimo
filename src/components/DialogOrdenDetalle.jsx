@@ -131,15 +131,21 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-const DialogOrdenDetalle = ({ nameOrder }) => {
+const DialogOrdenDetalle = () => {
   const dispatch = useDispatch()
-  const { modalOrden, ordenActual, listaOrdenes, loader } = useSelector(
-    (state) => state.ordenes
-  )
+  const {
+    listaOrdenes,
+    loader,
+    modalOrden,
+    ordenActual
+  } = useSelector((state) => state.ordenes)
+
+  const nameOrder = ordenActual.id_order
 
   const theme = useTheme()
 
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"))
+
   const onClose = () => {
     dispatch(actualizarModalOrden(false))
     dispatch(ordenPorDefecto())
@@ -202,7 +208,9 @@ const DialogOrdenDetalle = ({ nameOrder }) => {
               border-b border-gray-400
             "
           >
-            <h4 className="font-medium text-xl md:text-2xl">{nameOrder}</h4>
+            <h4 className="font-medium text-xl md:text-2xl">
+              {`Orden de envío #${nameOrder}`}
+            </h4>
             <IconButton onClick={onClose}>
               <CloseIcon />
             </IconButton>
@@ -283,6 +291,6 @@ DialogOrdenDetalle.propTypes = {
 
 DialogOrdenDetalle.defaultProps = {
   nameOrder: "Orden de envío 02",
-}
+} 
 
 export default DialogOrdenDetalle

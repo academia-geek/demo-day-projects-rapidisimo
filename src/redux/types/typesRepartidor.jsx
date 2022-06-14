@@ -3,6 +3,6 @@ export const typesRepartidor = {
   actualizarRepartidor: "ActualizarRepartidor",
   estadoPorDefecto: "EstadoPorDefecto",
   repartidorPorDefecto: "RepartidorPorDefecto",
-  actualizarModalRepartidor: "ActualizarModalRepartidor",
+  modalDetalleRepartidor: "ModalDetalleRepartidor",
   actualizarLoader: "ActualizarLoader"
 }
