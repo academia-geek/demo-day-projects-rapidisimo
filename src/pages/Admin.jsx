@@ -1,10 +1,14 @@
 // Base
 import React from "react"
 
+// Redux
+import { useDispatch, useSelector } from 'react-redux'
+
 // Container
 import Layout from "../containers/Layout"
 
 // Components
+import Header from "../components/Header"
 import DrawerSidebar from "../components/DrawerSidebar"
 import ListarRepartidores from "../components/ListarRepartidores"
 import ListarComercios from "../components/ListadoComercios"
@@ -12,6 +16,11 @@ import ListadoOrdenes from "../components/ListadoOrdenes"
 import ListadoIndicadores from "../components/ListadoIndicadores"
 
 const Admin = () => {
+  const dispatch = useDispatch()
+  const {
+    estadoActual,
+  } = useSelector((state) => state.repartidores)
+
   return (
     <div className="w-full h-screen">
       <DrawerSidebar
@@ -21,6 +30,9 @@ const Admin = () => {
       </DrawerSidebar>
 
       <Layout>
+        <Header
+            nameUser = {estadoActual.name === '' ? 'Admin' :estadoActual.name }
+        />
         <ListarRepartidores />
         <ListarComercios />
 

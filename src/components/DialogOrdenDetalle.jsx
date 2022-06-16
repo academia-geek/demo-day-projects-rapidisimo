@@ -155,6 +155,7 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
     modalOrden,
     ordenActual
   } = useSelector((state) => state.ordenes)
+
   const nameOrder = ordenActual.id_order
 
   const { listaRepartidores } = useSelector((state) => state.repartidores)

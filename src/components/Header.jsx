@@ -15,9 +15,10 @@ const Header = ({ nameUser }) => {
           {nameUser}
         </span>
       </h2>
-      <Badge badgeContent={4} color="error">
+
+      {/* <Badge badgeContent={4} color="error">
         <NotificationsOutlinedIcon sx={{ fontSize: 30 }} />
-      </Badge>
+      </Badge> */}
     </div>
   )
 }

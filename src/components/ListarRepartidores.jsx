@@ -51,6 +51,10 @@ const ListarRepartidores = () => {
   const dispatch = useDispatch()
   const { listaRepartidores } = useSelector((state) => state.repartidores)
 
+  const repartidores = listaRepartidores.filter((repartidor) => {
+    return repartidor.rol === "Delivery man"
+  })
+
   const handleAbrirModalRepartidor = (repartidor) => {
     dispatch(modalDetalleRepartidor(true))
     dispatch(actualizarRepartidor(repartidor))
@@ -72,9 +76,8 @@ const ListarRepartidores = () => {
     fetchRepartidores()
   }, [])
 
-  const repartidores = listaRepartidores.filter((repartidor) => {
-    return repartidor.rol === "Delivery man"
-  })
+
+
 
   return (
     <div className="w-full h-auto mb-6">
@@ -104,7 +107,7 @@ const ListarRepartidores = () => {
             nameDealer={repartidor.name}
             lastNameDealer={repartidor.lastname}
             image={
-              repartidor.user_image === " " || null
+              repartidor.user_image === "" || null
                 ? "https://res.cloudinary.com/rapidisimo/image/upload/v1655160552/rapidisimo/person_box_phs8c3.png"
                 : repartidor.user_image
             }

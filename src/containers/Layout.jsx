@@ -1,6 +1,5 @@
+// Base
 import React from 'react'
-import Header from '../components/Header'
-
 
 const Layout = ({ children }) => {
   return (
@@ -11,7 +10,6 @@ const Layout = ({ children }) => {
         md:ml-[340px] lg:ml-[360px] bg-background
       "
     >
-      <Header />
       {children}
     </div>
   )
