@@ -11,7 +11,7 @@ import ListarComercios from "../components/ListadoComercios"
 import ListadoOrdenes from "../components/ListadoOrdenes"
 import ListadoIndicadores from "../components/ListadoIndicadores"
 
-const Home = () => {
+const Admin = () => {
   return (
     <div className="w-full h-screen">
       <DrawerSidebar
@@ -33,4 +33,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Admin

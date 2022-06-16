@@ -1,5 +1,7 @@
 // Base
 import React, { useState } from "react"
+import PropTypes from 'prop-types'
+
 
 // Components
 import DialogOrdenRepartidor from "./DialogOrdenRepartidor"
@@ -14,33 +16,52 @@ import {
   ListItemAvatar,
 } from "@mui/material"
 
+
 // Material UI Icons
 import AddLocationAltOutlinedIcon from "@mui/icons-material/AddLocationAltOutlined"
 
+// Styles
+import { useTheme } from '@mui/material/styles'
+
+
 const ListadoSolicitudesRepartidor = () => {
   const [abrir, setAbrir] = useState(false)
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const handleChangeIndex = (index) => {
+    setValue(index);
+  };
 
   const handleClickOpen = () => {
     setAbrir(!abrir)
   }
 
+  const theme = useTheme();
+
   return (
     <div className="flex flex-col gap-4 w-full h-auto">
       <section>
         <h4 className="font-medium md:font-normal text-xl md:text-2xl">
-          Ordenes Activas
+          Orden Actual
         </h4>
 
         <div
           className="
             scroll-app
-            w-full h-[calc(100vh-400px)] lg:h-[calc(100vh-575px)]
+            w-full h-[90px]
             overflow-x-auto mt-4
             bg-white shadow-lg rounded-md
           "
         >
           <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-            <button onClick={() => handleClickOpen()}>
+            <button
+              className="w-full"
+              onClick={() => handleClickOpen()}
+            >
               <ListItem>
                 <ListItemAvatar>
                   <Avatar sx={{ background: "#E4DD2E" }}>
@@ -53,7 +74,6 @@ const ListadoSolicitudesRepartidor = () => {
                 />
               </ListItem>
             </button>
-            <Divider variant="inset" component="li" />
           </List>
         </div>
       </section>
@@ -66,7 +86,7 @@ const ListadoSolicitudesRepartidor = () => {
         <div
           className="
             scroll-app
-            w-full h-[calc(100vh-400px)] lg:h-[calc(100vh-575px)]
+            w-full h-[calc(100vh-200px)] lg:h-[calc(100vh-320px)]
             overflow-x-auto mt-4
             bg-white shadow-lg rounded-md
           "

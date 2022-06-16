@@ -7,6 +7,7 @@ import DrawerSidebar from "../components/DrawerSidebar"
 import Layout from "../containers/Layout"
 import StarIcon from "@mui/icons-material/Star"
 import ListadoSolicitudesRepartidor from "../components/ListadoSolicitudesRepartidor"
+import DialogPerfilLogin from "../components/DialogPerfilLogin"
 
 const InfoRepartidor = ({ services, distance, rating }) => {
   return (
@@ -69,6 +70,7 @@ const Repartidor = (
 
       <Layout>
         <ListadoSolicitudesRepartidor />
+        <DialogPerfilLogin />
       </Layout>
     </div>
   )
