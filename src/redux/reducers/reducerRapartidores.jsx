@@ -50,11 +50,19 @@ export const reducerRepartidores = (state = initialState, action) => {
       }
     }
 
+    // case typesRepartidor.detalleRepartidor: {
+    //   return {
+    //     ...state,
+    //     ...action.payload
+    //   }
+    // }
+
     case typesRepartidor.modalDetalleRepartidor:
       return {
         ...state,
         modalRepartidor: action.payload
       }
+
 
     case typesRepartidor.actualizarLoader:
       return {

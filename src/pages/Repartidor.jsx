@@ -2,11 +2,17 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+// Redux
+import { useDispatch, useSelector } from 'react-redux'
+
 // Components
 import DrawerSidebar from "../components/DrawerSidebar"
+import Header from "../components/Header"
 import Layout from "../containers/Layout"
-import StarIcon from "@mui/icons-material/Star"
 import ListadoSolicitudesRepartidor from "../components/ListadoSolicitudesRepartidor"
+
+// Material UI Icons
+import StarIcon from "@mui/icons-material/Star"
 
 const InfoRepartidor = ({ services, distance, rating }) => {
   return (
@@ -45,16 +51,12 @@ const InfoRepartidor = ({ services, distance, rating }) => {
   )
 }
 
-const Repartidor = (
-  {
-    code,
-    commerce,
-    date,
-    pickupLocation,
-    placeDelivery,
-    deliveryTime,
-    pickUpTimes,
-  }) => {
+const Repartidor = () => {
+  const dispatch = useDispatch()
+  const {
+    estadoActual,
+  } = useSelector((state) => state.repartidores)
+
   return (
     <div className="w-full h-screen">
       <DrawerSidebar
@@ -68,6 +70,9 @@ const Repartidor = (
       </DrawerSidebar>
 
       <Layout>
+        <Header
+          nameUser = {estadoActual.name === '' ? 'Repartidor' :estadoActual.name }
+        />
         <ListadoSolicitudesRepartidor />
       </Layout>
     </div>

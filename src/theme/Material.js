@@ -14,7 +14,7 @@ const theme = createTheme({
       main: themeGeneral.success,
     },
     error: {
-      main: '#EF4444',
+      main: themeGeneral.error,
     },
     tertiary: {
       main: '#0F0E17',

@@ -10,24 +10,27 @@ import { useDispatch, useSelector } from "react-redux"
 import {
   actualizarRepartidor,
   modalDetalleRepartidor,
-  listarRepartidores
+  listarRepartidores,
 } from "../redux/actions/actionsRepartidor"
 
 // Components
 import DialogPerfilRepartidor from "./DialogPerfilRepartidor"
 
-const RepartidorPerfil = ({ nameDealer, lastNameDealer, image, onClick }) => {
+const RepartidorPerfil = ({
+  colorStatus,
+  nameDealer,
+  lastNameDealer,
+  image,
+  onClick,
+}) => {
   return (
-    <div
-      className="w-20 h-auto text-center cursor-pointer"
-      onClick={onClick}
-    >
+    <div className="w-20 h-auto text-center cursor-pointer" onClick={onClick}>
       <section
-        className="
+        className={`
           flex items-center justify-center
           w-20 h-20 mb-1 rounded-full
-          bg-white border-2 border-success
-        "
+          bg-white border-2 ${colorStatus}
+        `}
       >
         <img
           className="w-16 h-16 object-cover rounded-full"
@@ -48,6 +51,10 @@ const ListarRepartidores = () => {
   const dispatch = useDispatch()
   const { listaRepartidores } = useSelector((state) => state.repartidores)
 
+  const repartidores = listaRepartidores.filter((repartidor) => {
+    return repartidor.rol === "Delivery man"
+  })
+
   const handleAbrirModalRepartidor = (repartidor) => {
     dispatch(modalDetalleRepartidor(true))
     dispatch(actualizarRepartidor(repartidor))
@@ -60,8 +67,7 @@ const ListarRepartidores = () => {
         url: "/allUsers/",
       })
       dispatch(listarRepartidores(data))
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error)
     }
   }
@@ -70,7 +76,8 @@ const ListarRepartidores = () => {
     fetchRepartidores()
   }, [])
 
-  const repartidores = listaRepartidores.filter((repartidor) => { return repartidor.rol === 'Delivery man' })
+
+
 
   return (
     <div className="w-full h-auto mb-6">
@@ -93,21 +100,27 @@ const ListarRepartidores = () => {
       </section>
 
       <section className="scroll-app flex flex-nowrap gap-6 overflow-y-auto">
-        {
-          repartidores.map((repartidor) => (
-            <RepartidorPerfil
-              key={repartidor.id_user}
-              onClick={() => handleAbrirModalRepartidor(repartidor)}
-              nameDealer={repartidor.name}
-              lastNameDealer={repartidor.lastname}
-              image={repartidor.user_image === ' ' || null
-                ? 'https://res.cloudinary.com/rapidisimo/image/upload/v1655160552/rapidisimo/person_box_phs8c3.png'
+        {repartidores.map((repartidor) => (
+          <RepartidorPerfil
+            key={repartidor.id_user}
+            onClick={() => handleAbrirModalRepartidor(repartidor)}
+            nameDealer={repartidor.name}
+            lastNameDealer={repartidor.lastname}
+            image={
+              repartidor.user_image === "" || null
+                ? "https://res.cloudinary.com/rapidisimo/image/upload/v1655160552/rapidisimo/person_box_phs8c3.png"
                 : repartidor.user_image
-              }
-              {...repartidor}
-            />
-          ))
-        }
+            }
+            colorStatus={
+              repartidor.delivery_man_status === 'Disponible'
+                ? 'border-success'
+                : repartidor.delivery_man_status === 'Ocupado'
+                  ? 'border-error'
+                  : 'border-grey-600'
+            }
+            {...repartidor}
+          />
+        ))}
       </section>
 
       <DialogPerfilRepartidor />
@@ -116,12 +129,14 @@ const ListarRepartidores = () => {
 }
 
 RepartidorPerfil.propTypes = {
+  colorStatus: PropTypes.string,
   nameDealer: PropTypes.string,
   lastNameDealer: PropTypes.string,
   image: PropTypes.string,
 }
 
 RepartidorPerfil.defaultProps = {
+  colorStatus: "border-success",
   nameDealer: "Repartidor",
   lastNameDealer: "Repartidor",
   image: "https://picsum.photos/200/300",

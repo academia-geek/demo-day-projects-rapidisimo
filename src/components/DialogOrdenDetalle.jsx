@@ -155,10 +155,13 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
     modalOrden,
     ordenActual
   } = useSelector((state) => state.ordenes)
+
   const nameOrder = ordenActual.id_order
 
   const { listaRepartidores } = useSelector((state) => state.repartidores)
-  const repartidores = listaRepartidores.filter((repartidor) => { return repartidor.rol === 'Delivery man' })
+  const repartidores = listaRepartidores.filter((repartidor) => {
+    return repartidor.rol === 'Delivery man'  & repartidor.delivery_man_status === 'Disponible'
+})
 
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"))
@@ -171,7 +174,7 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
   const [estadoOrden] = useState([
     { id: "uno", name: "En espera", value: "En espera" },
     { id: "dos", name: "En reparto", value: "En reparto" },
-    { id: "tres", name: "Entregado", value: "Entregado" },
+    { id: "tres", name: "Entregado", value: "Entregadas" },
   ])
 
   const handleCambiarEstadoOrden = (e) => {

@@ -26,6 +26,7 @@ const AppRoutes = () => {
         setIsLoggedIn(true)
         user.getIdToken()
           .then((token) => {
+            console.log(token)
             window.localStorage.setItem('token', token)
           })
           .catch((error) => { })

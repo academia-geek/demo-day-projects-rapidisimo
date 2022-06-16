@@ -4,5 +4,6 @@ export const typesRepartidor = {
   estadoPorDefecto: "EstadoPorDefecto",
   repartidorPorDefecto: "RepartidorPorDefecto",
   modalDetalleRepartidor: "ModalDetalleRepartidor",
-  actualizarLoader: "ActualizarLoader"
+  actualizarLoader: "ActualizarLoader",
+  detalleRepartidor: 'DetalleRepartidor'
 }

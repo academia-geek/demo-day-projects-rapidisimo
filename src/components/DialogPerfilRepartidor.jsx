@@ -41,6 +41,10 @@ const DialogPerfilRepartidor = ({ name, rol, email, status }) => {
     dispatch(modalDetalleRepartidor(false))
   }
 
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
+
   return (
     <Dialog
       open={modalRepartidor}
@@ -65,7 +69,7 @@ const DialogPerfilRepartidor = ({ name, rol, email, status }) => {
             <img
               className="rounded-full h-16 w-16 object-cover object-center"
               src={
-                estadoActual.user_image === ' ' || null
+                estadoActual.user_image === '' || null
                   ? 'https://res.cloudinary.com/rapidisimo/image/upload/v1655160552/rapidisimo/person_box_phs8c3.png'
                   : estadoActual.user_image
               }
@@ -98,11 +102,18 @@ const DialogPerfilRepartidor = ({ name, rol, email, status }) => {
         >
           Estado Actual:
           <span
-            className="
-              ml-1 px-3 py-1
-              font-light text-white font-medium
-              bg-yellow-500 rounded-full
-            "
+            // className="
+            //   ml-1 px-3 py-1
+            //   font-light text-white font-medium
+            //   bg-yellow-500 rounded-full
+            // "
+
+            className={classNames(
+              estadoActual.delivery_man_status === 'Disponible'
+              ? 'bg-success'
+              : 'bg-error',
+              'ml-1 px-3 py-1 font-light text-white font-medium rounded-full'
+            )}
           >
             {estadoActual.delivery_man_status}
           </span>
