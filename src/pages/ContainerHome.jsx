@@ -12,13 +12,13 @@ import Repartidor from './Repartidor'
 const ContainerHome = () => {
   const dispatch = useDispatch()
   const {
-    estadoActual,
-  } = useSelector((state) => state.repartidores)
+    perfilActual,
+  } = useSelector((state) => state.perfil)
 
   return (
     <>
       {
-        estadoActual.rol !== 'Delivery man' ?  <Admin /> : <Repartidor />
+        perfilActual.rol !== 'Delivery man' ?  <Admin /> : <Repartidor />
       }
     </>
   )
