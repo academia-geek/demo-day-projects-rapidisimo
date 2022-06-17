@@ -87,15 +87,26 @@ const ListarRepartidores = () => {
         </h4>
         <aside
           className="
-            w-[120px] h-auto
+            min-w-[150px] w-auto h-auto
             py-1 px-2 md:py-2 md:px-3
             rounded-full bg-success
             text-white text-base font-medium text-center
           "
         >
-          Activos
-          <span className="ml-2 font-bold">0</span> /
-          <span className="font-bold"> 0</span>
+          Disponibles
+          <span className="ml-2 font-bold">
+
+            {
+              repartidores.filter((repartidor) => {
+                return repartidor.delivery_man_status === "Disponible"
+              }).length
+            }
+          </span> /
+          <span className="ml-1 font-bold">
+            {
+              repartidores.length
+            }
+          </span>
         </aside>
       </section>
 

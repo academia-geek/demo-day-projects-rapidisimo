@@ -116,7 +116,7 @@ const TarjetaInfo = ({
           "
         >
           Horario de entrega:
-          <span className="ml-1 font-light">{deliveryTime}</span>
+          <span className="ml-1 font-light">{deliveryTime} Aprox</span>
         </li>
         <li
           className="
@@ -126,7 +126,7 @@ const TarjetaInfo = ({
           "
         >
           Costo del envío:
-          <span className="ml-1 font-light">{pickUpTimes}</span>
+          <span className="ml-1 font-light">$ {pickUpTimes}</span>
         </li>
         {/* <li
           className="
@@ -179,6 +179,39 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
 
   const handleCambiarEstadoOrden = (e) => {
     dispatch(actualizarOrden({ status_order: e.target.value }))
+  }
+
+
+  const AsignarOrden = async () => {
+    try {
+      await clientRapidisimo({
+        method: "POST",
+        url: '/postAssignedOrder/',
+        data: {
+          id_order: ordenActual.id_order,
+          id_delivery_man: repartidores.id_user
+        }
+      })
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+  const EnviarCorreoCLiente = async () => {
+    try {
+      await clientRapidisimo ({
+        method: "POST",
+        url: '/mailAssignedOrden/',
+        data: {
+          id_order: ordenActual.id_order,
+          id_delivery_man: repartidores.id
+        }
+      })
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 
   const putOrden = async () => {
@@ -239,10 +272,12 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
 
         <DialogContent sx={{ padding: "0 16px" }}>
           <TarjetaInfo
-            code={ordenActual._id_tracking}
+            code={ordenActual.id_order}
             date={ordenActual.date_delivery}
             pickupLocation={ordenActual.client_address}
             deliveryTime={ordenActual.estimated_time}
+            pickUpTimes={ordenActual.order_cost}
+
             {...ordenActual}
           />
 

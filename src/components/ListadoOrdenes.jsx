@@ -77,9 +77,9 @@ const ListadoOrdenes = () => {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={10}>En espera</MenuItem>
+            <MenuItem value={20}>En reparto</MenuItem>
+            <MenuItem value={30}>Entregado</MenuItem>
           </Select>
         </Grid>
         <Grid item xs={12} md={4}>
@@ -94,9 +94,9 @@ const ListadoOrdenes = () => {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={10}>En espera</MenuItem>
+            <MenuItem value={20}>En reparto</MenuItem>
+            <MenuItem value={30}>Entregado</MenuItem>
           </Select>
         </Grid>
         <Grid item xs={12} md={4}>
@@ -129,7 +129,15 @@ const ListadoOrdenes = () => {
                 >
                   <ListItem>
                     <ListItemAvatar>
-                      <Avatar sx={{ background: "green" }}>
+                      <Avatar
+                        style={
+                          orden.status_order === "En espera"
+                            ? { background: "#ef4444" }
+                            : orden.status_order === "En reparto"
+                              ? { background: "#fa8a24" }
+                              : { background: "#50ae57" }
+                        }
+                      >
                         <AddLocationAltOutlinedIcon />
                       </Avatar>
                     </ListItemAvatar>
