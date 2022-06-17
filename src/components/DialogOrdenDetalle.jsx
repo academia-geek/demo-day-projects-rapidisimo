@@ -32,7 +32,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  Slide,
+  Slide
 } from "@mui/material"
 
 // Material UI Icons
@@ -74,7 +74,7 @@ const TarjetaInfo = ({
           "
         >
           Comercio:
-          <span className="ml-1 font-light">Zipol</span>
+          <span className="ml-1 font-light">{commerce}</span>
         </li>
         <li
           className="
@@ -149,6 +149,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const DialogOrdenDetalle = ({ center, zoom }) => {
   const dispatch = useDispatch()
+  // Ordenes
   const {
     listaOrdenes,
     loader,
@@ -158,10 +159,14 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
 
   const nameOrder = ordenActual.id_order
 
+  // Repartidores
   const { listaRepartidores } = useSelector((state) => state.repartidores)
   const repartidores = listaRepartidores.filter((repartidor) => {
-    return repartidor.rol === 'Delivery man'  & repartidor.delivery_man_status === 'Disponible'
-})
+    return repartidor.rol === 'Delivery man' & repartidor.delivery_man_status === 'Disponible'
+  })
+
+  // Comercios
+  const { listaComercios } = useSelector((state) => state.comercios)
 
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"))
@@ -181,26 +186,9 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
     dispatch(actualizarOrden({ status_order: e.target.value }))
   }
 
-
-  const AsignarOrden = async () => {
-    try {
-      await clientRapidisimo({
-        method: "POST",
-        url: '/postAssignedOrder/',
-        data: {
-          id_order: ordenActual.id_order,
-          id_delivery_man: repartidores.id_user
-        }
-      })
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
-
   const EnviarCorreoCLiente = async () => {
     try {
-      await clientRapidisimo ({
+      await clientRapidisimo({
         method: "POST",
         url: '/mailAssignedOrden/',
         data: {
@@ -273,11 +261,17 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
         <DialogContent sx={{ padding: "0 16px" }}>
           <TarjetaInfo
             code={ordenActual.id_order}
+            commerce={ordenActual.id_company === null
+              ? 'No asignado'
+              : listaComercios.find(comercio => comercio.id_company === ordenActual.id_company).name_company
+            }
             date={ordenActual.date_delivery}
-            pickupLocation={ordenActual.client_address}
+            pickupLocation={ordenActual.id_company === null
+              ? 'No asignado'
+              : listaComercios.find(comercio => comercio.id_company === ordenActual.id_company).companie_address}
+            placeDelivery={ordenActual.client_address}
             deliveryTime={ordenActual.estimated_time}
             pickUpTimes={ordenActual.order_cost}
-
             {...ordenActual}
           />
 
@@ -326,7 +320,7 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
                           key={repartidor.id_user}
                           value={repartidor.id_user}
                         >
-                        {`${repartidor.name} ${repartidor.lastname}`}
+                          {`${repartidor.name} ${repartidor.lastname}`}
                         </MenuItem>
                       ))
                     }

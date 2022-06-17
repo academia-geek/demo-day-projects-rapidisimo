@@ -1,4 +1,5 @@
 import { combineReducers } from "redux"
+import { reducerComercio } from "../reducers/reducerComercio";
 
 // Reducers
 import { reducerLogin } from "../reducers/reducerLogin";
@@ -10,5 +11,6 @@ export default combineReducers({
   user: reducerLogin,
   ordenes: reducerOrdenes,
   repartidores: reducerRepartidores,
-  perfil: reducerPerfil
+  perfil: reducerPerfil,
+  comercios: reducerComercio,
 });

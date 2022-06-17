@@ -18,8 +18,8 @@ import ListadoIndicadores from "../components/ListadoIndicadores"
 const Admin = () => {
   const dispatch = useDispatch()
   const {
-    estadoActual,
-  } = useSelector((state) => state.repartidores)
+    perfilActual,
+  } = useSelector((state) => state.perfil)
 
   return (
     <div className="w-full h-screen">
@@ -31,7 +31,7 @@ const Admin = () => {
 
       <Layout>
         <Header
-            nameUser = {estadoActual.name === '' ? 'Admin' :estadoActual.name }
+            nameUser = {perfilActual.name === '' ? 'Admin' : perfilActual.name }
         />
         <ListarRepartidores />
         <ListarComercios />

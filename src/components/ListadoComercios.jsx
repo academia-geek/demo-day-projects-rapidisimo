@@ -1,6 +1,10 @@
 // Base
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
+
+// Redux
+import { useDispatch, useSelector } from "react-redux"
+import { listarComercios } from "../redux/actions/actionComercio.jsx"
 
 // Utils
 import clientRapidisimo from "../utils/client.js"
@@ -10,6 +14,7 @@ import { Avatar } from "@mui/material"
 
 // Material UI Icons
 import StoreMallDirectoryOutlinedIcon from "@mui/icons-material/StoreMallDirectoryOutlined"
+
 
 const ComercioPerfil = ({ nameCommerce, email }) => {
   return (
@@ -41,7 +46,9 @@ const ComercioPerfil = ({ nameCommerce, email }) => {
 }
 
 const ListarComercios = () => {
-  const [comercios, setComercios] = useState([])
+  const dispatch = useDispatch()
+  const { listaComercios } = useSelector((state) => state.comercios)
+
 
   const fetchComercios = async () => {
     try {
@@ -49,7 +56,7 @@ const ListarComercios = () => {
         method: "GET",
         url: "/allCompanies/",
       })
-      setComercios(data)
+      dispatch(listarComercios(data))
     }
     catch (error) {
       console.log(error)
@@ -67,7 +74,7 @@ const ListarComercios = () => {
       </h4>
 
       <section className="scroll-app flex flex-nowrap gap-4 overflow-y-auto">
-        {comercios.map((comercio, index) => (
+        {listaComercios.map((comercio, index) => (
           <ComercioPerfil
             key={index}
             nameCommerce={comercio.name_company}
