@@ -76,9 +76,6 @@ const ListarRepartidores = () => {
     fetchRepartidores()
   }, [])
 
-
-
-
   return (
     <div className="w-full h-auto mb-6">
       <section className="flex items-center gap-4 mb-4">

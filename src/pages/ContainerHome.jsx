@@ -14,6 +14,7 @@ const ContainerHome = () => {
   const {
     perfilActual,
   } = useSelector((state) => state.perfil)
+  console.log(perfilActual.rol, 'PERFIL')
 
   return (
     <>

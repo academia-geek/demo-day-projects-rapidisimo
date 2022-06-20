@@ -12,8 +12,10 @@ const initialState = {
     "phone": null,
     "delivery_man_status": "",
     "vehicle": "",
-    "rol": "Admin",
-    "user_image": ""
+    "rol": "",
+    "user_image": "",
+    "user_latitude": "",
+    "user_longitude": ""
   },
   loader: false
 }
