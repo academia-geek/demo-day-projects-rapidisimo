@@ -167,6 +167,7 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
 
   // Comercios
   const { listaComercios } = useSelector((state) => state.comercios)
+  console.log(listaComercios)
 
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"))
@@ -354,13 +355,13 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
 
             <div className="h-96 w-full rounded-b-md">
               <GoogleMapReact
-                bootstrapURLKeys={{ key: 'AIzaSyDa3u_6oJQaFtn2n5EbwYHFYpMIknmZilE' }}
+                bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
                 defaultCenter={center}
                 defaultZoom={zoom}
               >
                 <AnyReactComponent
-                  lat={4.7008}
-                  lng={-74.0426}
+                  lat={6.167237411799037}
+                  lng={-75.61377269092478}
                   text="Aca estoy"
                 />
               </GoogleMapReact>
@@ -389,7 +390,7 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
 }
 
 TarjetaInfo.propTypes = {
-  code: PropTypes.string,
+  code: PropTypes.number,
   commerce: PropTypes.string,
   date: PropTypes.string,
   pickupLocation: PropTypes.string,
@@ -399,7 +400,7 @@ TarjetaInfo.propTypes = {
 }
 
 TarjetaInfo.defaultProps = {
-  code: "0o9i8u7y6",
+  code: 0,
   commerce: "Zipol",
   date: "2020-05-01T00:00:00.000Z",
   pickupLocation: "Calle 153 # 104 - 18 - Medellin",

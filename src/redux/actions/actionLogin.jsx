@@ -13,6 +13,8 @@ import {
   deleteUser,
   sendEmailVerification,
 } from "firebase/auth"
+import clientRapidisimo from "../../utils/client"
+import { actualizarPerfil } from "./actionPerfil"
 
 //---------- Logout ----------//
 export const logoutAsync = () => {
@@ -140,7 +142,36 @@ export const registroAsync = (name, email, password) => {
             console.log('Verificado')
           }
         }
+
+        try {
+          const { data } = await clientRapidisimo({
+            method: "POST",
+            url: '/postUser/',
+            data: {
+              "email": email,
+              "document": 40000005,
+              "name": name,
+              "lastname": "Usuario",
+              "phone": "00000000",
+              "delivery_man_status": "Disponible",
+              "vehicle": "Carro",
+              "rol": "Delivery man",
+              "user_image": " ",
+              "user_latitude": 6.167237411799037,
+              "user_longitude": -75.61377269092478
+            }
+          })
+          dispatch(actualizarPerfil(data[1].data))
+          console.log('Usuario enviado')
+          console.log()
+        } catch (error) {
+          console.log(error, 'Usuario no enviado')
+        }
         dispatch(registroSync(user.email, user.uid, user.displayName))
+        console.log('Usuario registrado')
+      })
+      .catch(error => {
+        console.warn(error, 'No registrado')
       })
   }
 }

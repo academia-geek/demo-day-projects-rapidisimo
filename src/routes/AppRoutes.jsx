@@ -15,10 +15,27 @@ import DashboardRoutes from "./DashboardRoutes"
 
 // Material UI
 import { CircularProgress } from "@mui/material"
+import clientRapidisimo from "../utils/client"
+import { listarRepartidores } from "../redux/actions/actionsRepartidor"
+import { useDispatch } from "react-redux"
 
 const AppRoutes = () => {
+  const dispatch = useDispatch()
   const [checkIn, setCheckIn] = useState(true)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const fetchPerfil = async () => {
+    try {
+      const { data } = await clientRapidisimo({
+        method: "GET",
+        url: "/auth/validateUser/",
+      })
+      dispatch(listarRepartidores(data.email))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     const auth = getAuth()
     onAuthStateChanged(auth, (user) => {
@@ -35,7 +52,14 @@ const AppRoutes = () => {
       }
       setCheckIn(false)
     })
+
+    if (localStorage.getItem('token') !== null)  {
+      console.log('Token: ', localStorage.getItem('token'))
+    } else {
+      fetchPerfil()
+    }
   }, [setIsLoggedIn, setCheckIn])
+
   if (checkIn) {
     return (
       <div
