@@ -299,7 +299,7 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
           <section className="w-full h-auto">
             <div
               className="
-                grid grid-cols-1 md:grid-cols-3 gap-4
+                grid grid-cols-1 md:grid-cols-2 gap-4
                 w-full h-auto px-3 py-4
                 bg-zinc-200 rounded-t-md
               "
@@ -347,29 +347,6 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
                     }
                   </Select>
                 </FormControl>
-              </aside>
-
-              <aside
-                className="
-                  relative
-                  w-full h-10 px-3 py-2
-                  border border-gray-400
-                  rounded
-                "
-              >
-                <p
-                  className="
-                    absolute -top-2
-                    px-1
-                    text-xs font-normal bg-zinc-200 text-gray-600
-                  "
-                >
-                  Tiempo de llegada
-                </p>
-
-                <p>
-                  Aprox
-                </p>
               </aside>
             </div>
 

@@ -116,7 +116,7 @@ const ListarRepartidores = () => {
             lastNameDealer={repartidor.lastname}
             image={
               repartidor.user_image === " " || null
-                ? "https://storage.cloud.google.com/rapidisimo-bucket/user-image/userImage2.jpg?authuser=1"
+                ? "https://res.cloudinary.com/rapidisimo/image/upload/v1655160552/rapidisimo/person_box_phs8c3.png"
                 : repartidor.user_image
             }
             colorStatus={
