@@ -17,7 +17,14 @@ import {
   actualizarOrden,
   listarOrdenes,
   ordenPorDefecto,
+
 } from "../redux/actions/actionOrdenes"
+
+import {
+  listarRepartidores,
+  cambiarRepartidorOrden,
+  cambiarRepartidorPorDefecto
+} from '../redux/actions/actionsRepartidor'
 
 // Material UI
 import {
@@ -149,6 +156,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const DialogOrdenDetalle = ({ center, zoom }) => {
   const dispatch = useDispatch()
+
   // Ordenes
   const {
     listaOrdenes,
@@ -160,7 +168,7 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
   const nameOrder = ordenActual.id_order
 
   // Repartidores
-  const { listaRepartidores } = useSelector((state) => state.repartidores)
+  const { listaRepartidores, repartidorOrden } = useSelector((state) => state.repartidores)
   const repartidores = listaRepartidores.filter((repartidor) => {
     return repartidor.rol === 'Delivery man' & repartidor.delivery_man_status === 'Disponible'
   })
@@ -187,25 +195,23 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
     dispatch(actualizarOrden({ status_order: e.target.value }))
   }
 
-  const EnviarCorreoCLiente = async () => {
-    try {
-      await clientRapidisimo({
-        method: "POST",
-        url: '/mailAssignedOrden/',
-        data: {
-          id_order: ordenActual.id_order,
-          id_delivery_man: repartidores.id
+  const cambiarEstadoRepartidor = (id) =>  {
+    const nuevaListaRepartidores = listaRepartidores.map((repartidor) => {
+      if (repartidor.id_user === id) {
+        return {
+          ...repartidor,
+          delivery_man_status: "Ocupado",
         }
-      })
-    }
-    catch (error) {
-      console.log(error)
-    }
+      } else {
+        return repartidor
+      }
+    })
+    dispatch(listarRepartidores(nuevaListaRepartidores))
   }
 
   const putOrden = async () => {
     try {
-      const { id_order, _id_tracking, ...payload } = ordenActual
+      const { id_order, _id_tracking, image_order, ...payload } = ordenActual
       dispatch(actualizarLoader(true))
       await clientRapidisimo({
         method: "PUT",
@@ -216,8 +222,19 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
         return orden.id_order === id_order ? ordenActual : orden
       })
 
+      await clientRapidisimo({
+        method: "POST",
+        url: '/mail/mailAssignedOrden',
+        data: {
+          id_order: ordenActual.id_order,
+          id_delivery_man: repartidorOrden
+        }
+      })
       dispatch(listarOrdenes(nuevaLista))
-      onClose()
+      cambiarEstadoRepartidor(repartidorOrden)
+      onClose(
+        dispatch(cambiarRepartidorPorDefecto())
+      )
     } catch (error) {
       console.log(error)
     } finally {
@@ -228,6 +245,9 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
   const handleAsignarOrden = (e) => {
     putOrden()
   }
+
+  const comercioInfo = listaComercios.find(comercio => comercio.id_company === ordenActual.id_company)
+  // console.log(comercioInfo.companie_latitude)
 
   return (
     <div>
@@ -264,12 +284,12 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
             code={ordenActual.id_order}
             commerce={ordenActual.id_company === null
               ? 'No asignado'
-              : listaComercios.find(comercio => comercio.id_company === ordenActual.id_company).name_company
+              : comercioInfo.name_company
             }
             date={ordenActual.date_delivery}
             pickupLocation={ordenActual.id_company === null
               ? 'No asignado'
-              : listaComercios.find(comercio => comercio.id_company === ordenActual.id_company).companie_address}
+              : comercioInfo.companie_address}
             placeDelivery={ordenActual.client_address}
             deliveryTime={ordenActual.estimated_time}
             pickUpTimes={ordenActual.order_cost}
@@ -310,9 +330,9 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
                   <Select
                     labelId="repartidores-label"
                     id="repartidores"
-                    value={repartidores.name}
+                    value={repartidorOrden}
                     label="Repartidores"
-                    // onChange={handleChange}
+                    onChange={(e) => dispatch(cambiarRepartidorOrden(e.target.value))}
                     fullWidth
                   >
                     {
@@ -356,7 +376,14 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
             <div className="h-96 w-full rounded-b-md">
               <GoogleMapReact
                 bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
-                defaultCenter={center}
+                defaultCenter={
+                  comercioInfo
+                    ? {
+                        lat: comercioInfo.companie_latitude,
+                        lng: comercioInfo.companie_longitude,
+                    }
+                    : { lat: 4.7008, lng: -74.0426 }
+                  }
                 defaultZoom={zoom}
               >
                 <AnyReactComponent

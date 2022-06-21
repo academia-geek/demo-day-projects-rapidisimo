@@ -20,16 +20,15 @@ import { actualizarPerfil } from "./actionPerfil"
 export const logoutAsync = () => {
   return (dispatch) => {
     const auth = getAuth()
-    const userDelete = auth.currentUser
+    // const userDelete = auth.currentUser
     const user = auth.currentUser
 
-
-    deleteUser(userDelete)
-      .then(() => {
-        console.log("Usuario eliminado")
-      }).catch((error) => {
-        console.log(error)
-      })
+    // deleteUser(userDelete)
+    //   .then(() => {
+    //     console.log("Usuario eliminado")
+    //   }).catch((error) => {
+    //     console.log(error)
+    //   })
 
     signOut(auth, user)
       .then((user) => {
@@ -43,10 +42,12 @@ export const logoutAsync = () => {
           .then((timestamp) => {
             console.log(`Tokens revoked at: ${timestamp}`)
           })
+          localStorage.removeItem('token')
         dispatch(logout())
       })
       .catch(error => {
         console.warn(error)
+        localStorage.removeItem('token')
       })
   }
 }
@@ -141,31 +142,39 @@ export const registroAsync = (name, email, password) => {
           } else {
             console.log('Verificado')
           }
-        }
-
-        try {
-          const { data } = await clientRapidisimo({
-            method: "POST",
-            url: '/postUser/',
-            data: {
-              "email": email,
-              "document": 40000005,
-              "name": name,
-              "lastname": "Usuario",
-              "phone": "00000000",
-              "delivery_man_status": "Disponible",
-              "vehicle": "Carro",
-              "rol": "Delivery man",
-              "user_image": " ",
-              "user_latitude": 6.167237411799037,
-              "user_longitude": -75.61377269092478
+          user.getIdToken()
+          .then( async (token) => {
+            try {
+              const { data } = await clientRapidisimo({
+                method: "POST",
+                url: '/postUser/',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`
+                },
+                data: {
+                  "email": email,
+                  "document": 40000005,
+                  "name": name,
+                  "lastname": "Usuario",
+                  "phone": "00000000",
+                  "delivery_man_status": "Disponible",
+                  "vehicle": "Carro",
+                  "rol": "Delivery man",
+                  "user_image": " ",
+                  "user_latitude": 6.167237411799037,
+                  "user_longitude": -75.61377269092478
+                }
+              })
+              dispatch(actualizarPerfil(data[1][0]))
+              console.log('Usuario enviado')
+            } catch (error) {
+              console.log(error, 'Usuario no enviado')
             }
           })
-          dispatch(actualizarPerfil(data[1].data))
-          console.log('Usuario enviado')
-          console.log()
-        } catch (error) {
-          console.log(error, 'Usuario no enviado')
+          .catch((error) => {
+            console.log(error)
+          })
         }
         dispatch(registroSync(user.email, user.uid, user.displayName))
         console.log('Usuario registrado')

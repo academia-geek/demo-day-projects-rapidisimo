@@ -19,7 +19,7 @@ const ContainerHome = () => {
   return (
     <>
       {
-        perfilActual.rol !== 'Delivery man' ?  <Admin /> : <Repartidor />
+        perfilActual.rol === 'Delivery man' ?  <Repartidor /> : <Admin />
       }
     </>
   )

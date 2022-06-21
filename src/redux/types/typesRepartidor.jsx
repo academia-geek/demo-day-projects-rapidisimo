@@ -5,5 +5,7 @@ export const typesRepartidor = {
   repartidorPorDefecto: "RepartidorPorDefecto",
   modalDetalleRepartidor: "ModalDetalleRepartidor",
   actualizarLoader: "ActualizarLoader",
-  detalleRepartidor: 'DetalleRepartidor'
+  detalleRepartidor: 'DetalleRepartidor',
+  cambiarRepartidorOrden: 'CambiarRepartidorOrden',
+  cambiarRepartidorPorDefecto: 'RepartidorPorDefecto',
 }

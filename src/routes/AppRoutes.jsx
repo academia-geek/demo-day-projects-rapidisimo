@@ -16,8 +16,8 @@ import DashboardRoutes from "./DashboardRoutes"
 // Material UI
 import { CircularProgress } from "@mui/material"
 import clientRapidisimo from "../utils/client"
-import { listarRepartidores } from "../redux/actions/actionsRepartidor"
 import { useDispatch } from "react-redux"
+import { actualizarPerfil } from "../redux/actions/actionPerfil"
 
 const AppRoutes = () => {
   const dispatch = useDispatch()
@@ -30,7 +30,7 @@ const AppRoutes = () => {
         method: "GET",
         url: "/auth/validateUser/",
       })
-      dispatch(listarRepartidores(data.email))
+      dispatch(actualizarPerfil(data[0]))
     } catch (error) {
       console.log(error)
     }
@@ -46,16 +46,16 @@ const AppRoutes = () => {
             console.log(token)
             window.localStorage.setItem('token', token)
           })
-          .catch((error) => { })
+          .catch((error) => {
+            console.log(error)
+          })
       } else {
         setIsLoggedIn(false)
       }
       setCheckIn(false)
     })
 
-    if (localStorage.getItem('token') !== null)  {
-      console.log('Token: ', localStorage.getItem('token'))
-    } else {
+    if (localStorage.getItem('token'))  {
       fetchPerfil()
     }
   }, [setIsLoggedIn, setCheckIn])
@@ -72,6 +72,7 @@ const AppRoutes = () => {
       </div>
     )
   }
+
   return (
     <BrowserRouter>
       <Routes>
