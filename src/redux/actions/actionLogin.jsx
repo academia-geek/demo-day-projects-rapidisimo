@@ -74,12 +74,36 @@ export const logout = () => {
 
 //---------- Login Asincornico con Firebase ----------//
 export const loginAsync = (email, password) => {
-  return (dispatch) => {
+  return (dispatch) => async () => {
     const auth = getAuth()
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
-        dispatch(loginSync(user.email, user.password))
-        console.log('Usuario autorizado')
+        user.getIdToken()
+        .then( async (token) => {
+          try {
+            const { data } = await clientRapidisimo({
+              method: "POST",
+              url: '/auth/logIn/',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              data: {
+                email: email,
+                password: password
+              }
+            })
+            dispatch(loginSync(user.data.email, token, data[0]))
+            console.log('Usuario enviado')
+          } catch (error) {
+            console.log(error, 'Usuario no enviado')
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+        // dispatch(loginSync(user.email, user.password))
+        // console.log('Usuario autorizado')
       })
       .catch(error => {
         console.warn(error, 'No autorizado')
