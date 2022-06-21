@@ -160,7 +160,7 @@ export const registroAsync = (name, email, password) => {
                   "phone": "00000000",
                   "delivery_man_status": "Disponible",
                   "vehicle": "Carro",
-                  "rol": "Delivery man",
+                  "rol": "Admin",
                   "user_image": " ",
                   "user_latitude": 6.167237411799037,
                   "user_longitude": -75.61377269092478
