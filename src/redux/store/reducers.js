@@ -1,5 +1,6 @@
 import { combineReducers } from "redux"
 import { reducerComercio } from "../reducers/reducerComercio";
+import { reducerIndicadores } from "../reducers/reducerIndicadores";
 
 // Reducers
 import { reducerLogin } from "../reducers/reducerLogin";
@@ -8,9 +9,10 @@ import { reducerPerfil } from "../reducers/reducerPerfil";
 import { reducerRepartidores } from "../reducers/reducerRapartidores";
 
 export default combineReducers({
-  user: reducerLogin,
-  ordenes: reducerOrdenes,
-  repartidores: reducerRepartidores,
-  perfil: reducerPerfil,
   comercios: reducerComercio,
+  indicadores: reducerIndicadores,
+  ordenes: reducerOrdenes,
+  perfil: reducerPerfil,
+  repartidores: reducerRepartidores,
+  user: reducerLogin,
 });

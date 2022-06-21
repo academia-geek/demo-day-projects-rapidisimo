@@ -1,6 +1,7 @@
 // Base
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
+import clientRapidisimo from "../utils/client"
 
 const Indicadores = ({ title, subtitle }) => {
   return (
@@ -28,6 +29,19 @@ const Indicadores = ({ title, subtitle }) => {
 }
 
 const ListadoIndicadores = () => {
+  const fetchTotalOrdenes = async () => {
+    try {
+      const { data } = await clientRapidisimo({
+        method: "GET",
+        url: "/getNumOrdersToday/",
+      })
+
+      console.log(data, 'DATA')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div>
       <h4 className="font-medium md:font-normal text-xl md:text-2xl mb-4">
@@ -42,10 +56,22 @@ const ListadoIndicadores = () => {
           overflow-x-auto
         "
       >
-        <Indicadores />
+        {/* {
+          totalOrdenes.map((totalOrden) => (
+            <Indicadores
+              title="Total de ordenes"
+              subtitle={totalOrden.total_orders}
+            />
+          ))
+        } */}
+        {/* <Indicadores /> */}
       </div>
     </div>
   )
+
+  useEffect(() => {
+    fetchTotalOrdenes()
+  }, [])
 }
 
 Indicadores.propTypes = {

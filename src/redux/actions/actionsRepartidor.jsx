@@ -20,6 +20,15 @@ export const actualizarRepartidor = (payload) => ({
   payload
 })
 
+export const cambiarRepartidorOrden = (payload) => ({
+  type: typesRepartidor.cambiarRepartidorOrden,
+  payload
+})
+
+export const cambiarRepartidorPorDefecto = () => ({
+  type: typesRepartidor.cambiarRepartidorPorDefecto
+})
+
 export const modalDetalleRepartidor = (payload) => ({
   type: typesRepartidor.modalDetalleRepartidor,
   payload
@@ -29,4 +38,3 @@ export const actualizarLoader = (payload) => ({
   type: typesRepartidor.actualizarLoader,
   payload
 })
-

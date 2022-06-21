@@ -17,6 +17,7 @@ const initialState = {
     "user_latitude": "",
     "user_longitude": ""
   },
+  repartidorOrden: null,
   modalRepartidor: false,
   loader: false
 }
@@ -52,12 +53,19 @@ export const reducerRepartidores = (state = initialState, action) => {
       }
     }
 
-    // case typesRepartidor.detalleRepartidor: {
-    //   return {
-    //     ...state,
-    //     ...action.payload
-    //   }
-    // }
+    case typesRepartidor.cambiarRepartidorOrden: {
+      return {
+        ...state,
+        repartidorOrden: action.payload
+      }
+    }
+
+    case typesRepartidor.cambiarRepartidorPorDefecto: {
+      return {
+        ...state,
+        repartidorOrden: null
+      }
+    }
 
     case typesRepartidor.modalDetalleRepartidor:
       return {

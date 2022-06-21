@@ -57,16 +57,22 @@ const Repartidor = () => {
     estadoActual,
   } = useSelector((state) => state.repartidores)
 
+  const {
+    perfilActual,
+  } = useSelector((state) => state.perfil)
+
   return (
     <div className="w-full h-screen">
       <DrawerSidebar
         bgColor="bg-secondary"
         btnColor="primary"
         image="https://res.cloudinary.com/rapidisimo/image/upload/v1654660328/rapidisimo/1_fgwhrx.jpg"
-        name="Repartidor"
+        name={`${perfilActual.name} ${perfilActual.lastname}`}
         role="Repartidor"
       >
-        <InfoRepartidor />
+        <InfoRepartidor
+
+        />
       </DrawerSidebar>
 
       <Layout>
