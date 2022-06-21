@@ -1,7 +1,9 @@
 // Base
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import PropTypes from 'prop-types'
 
+// Redux
+import { useDispatch } from "react-redux"
 
 // Components
 import DialogOrdenRepartidor from "./DialogOrdenRepartidor"
@@ -22,11 +24,13 @@ import AddLocationAltOutlinedIcon from "@mui/icons-material/AddLocationAltOutlin
 
 // Styles
 import { useTheme } from '@mui/material/styles'
+import clientRapidisimo from "../utils/client"
 
 
 const ListadoSolicitudesRepartidor = () => {
+  const dispatch = useDispatch()
   const [abrir, setAbrir] = useState(false)
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -40,7 +44,23 @@ const ListadoSolicitudesRepartidor = () => {
     setAbrir(!abrir)
   }
 
-  const theme = useTheme();
+  const theme = useTheme()
+
+  const fetchOrdenesAsignadas = async () => {
+    try {
+      const { data } = await clientRapidisimo({
+        method: "GET",
+        url: "/OrdersDateDelivery/",
+      })
+      // dispatch(listarRepartidores(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchOrdenesAsignadas()
+  })
 
   return (
     <div className="flex flex-col gap-4 w-full h-auto">
