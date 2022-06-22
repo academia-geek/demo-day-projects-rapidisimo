@@ -1,5 +1,5 @@
 // Base
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import PropTypes from "prop-types"
 
 // Utils
@@ -39,17 +39,32 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  Slide
+  Slide,
+  Typography
 } from "@mui/material"
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
+
 
 // Material UI Icons
 import CloseIcon from "@mui/icons-material/Close"
 
 // Styles
 import useMediaQuery from "@mui/material/useMediaQuery"
-import { useTheme } from "@mui/material/styles"
+import { useTheme, styled } from "@mui/material/styles"
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>
+const Marker = ({ children }) => children
+
+const HtmlTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: '#f5f5f9',
+    color: 'rgba(0, 0, 0, 0.87)',
+    maxWidth: 220,
+    fontSize: theme.typography.pxToRem(12),
+    border: '1px solid #dadde9',
+  },
+}))
 
 const TarjetaInfo = ({
   code,
@@ -154,7 +169,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-const DialogOrdenDetalle = ({ center, zoom }) => {
+const DialogOrdenDetalle = () => {
   const dispatch = useDispatch()
 
   // Ordenes
@@ -195,7 +210,7 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
     dispatch(actualizarOrden({ status_order: e.target.value }))
   }
 
-  const cambiarEstadoRepartidor = (id) =>  {
+  const cambiarEstadoRepartidor = (id) => {
     const nuevaListaRepartidores = listaRepartidores.map((repartidor) => {
       if (repartidor.id_user === id) {
         return {
@@ -247,7 +262,10 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
   }
 
   const comercioInfo = listaComercios.find(comercio => comercio.id_company === ordenActual.id_company)
-  // console.log(comercioInfo.companie_latitude)
+
+  const mapRef = useRef()
+  const [zoom, setZoom] = useState(10)
+  const [bounds, setBounds] = useState(null)
 
   return (
     <div>
@@ -356,18 +374,48 @@ const DialogOrdenDetalle = ({ center, zoom }) => {
                 defaultCenter={
                   comercioInfo
                     ? {
-                        lat: comercioInfo.companie_latitude,
-                        lng: comercioInfo.companie_longitude,
+                      lat: comercioInfo.companie_latitude,
+                      lng: comercioInfo.companie_longitude,
                     }
-                    : { lat: 4.7008, lng: -74.0426 }
-                  }
+                    : { lat: 6.217, lng: -75.567 }
+                }
                 defaultZoom={zoom}
               >
-                <AnyReactComponent
-                  lat={6.167237411799037}
-                  lng={-75.61377269092478}
-                  text="Aca estoy"
-                />
+                {
+                  repartidores.map((repartidor) => (
+                    <Marker
+                      key={repartidor.id_user}
+                      lat={repartidor.user_latitude}
+                      lng={repartidor.user_longitude}
+                    >
+                      <HtmlTooltip
+                        title={
+                          <React.Fragment>
+                            <Typography color="inherit">
+                              {`${repartidor.name} ${repartidor.lastname}`}
+                            </Typography>
+                            <p>Estado: {repartidor.delivery_man_status}</p>
+                          </React.Fragment>
+                        }
+                      >
+                        <div
+                          className="
+                          flex items-center justify-center
+                          h-9 w-9 p-1
+                          rounded-full bg-primary
+                        "
+                        >
+                          <img
+                            src="https://res.cloudinary.com/rapidisimo/image/upload/v1655855976/rapidisimo/isotipo_gxj6y5.png"
+                            alt="isotipo rapidisimo"
+                            className="h-4 w-auto object-cover"
+                          />
+                        </div>
+                      </HtmlTooltip>
+                    </Marker>
+                  ))
+                }
+
               </GoogleMapReact>
             </div>
           </section>
@@ -414,13 +462,13 @@ TarjetaInfo.defaultProps = {
 }
 
 DialogOrdenDetalle.propTypes = {
-  center: PropTypes.object,
-  zoom: PropTypes.number,
+  // center: PropTypes.object,
+  // zoom: PropTypes.number,
 }
 
 DialogOrdenDetalle.defaultProps = {
-  center: { lat: 4.7008, lng: -74.0426 },
-  zoom: 11,
+  // center: { lat: 4.7008, lng: -74.0426 },
+  // zoom: 11,
 }
 
 export default DialogOrdenDetalle
