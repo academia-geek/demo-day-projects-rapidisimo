@@ -8,7 +8,7 @@ using the kanban method as development tools (workflow is attached at the end of
 ## This project was created with:
 
 
-##Front-End
+*Front-End*
 ---
 
 
@@ -37,7 +37,7 @@ Other Tools:
 ---
 **Thunk**, **Cloudinary** y **Sweetalert**
 
-##Back-End
+*Back-End*
 ---
 
 
