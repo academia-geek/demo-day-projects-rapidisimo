@@ -55,7 +55,7 @@ const DialogOrdenRepartidor = ({
             "
           >
             <h4 className="font-medium text-lg md:text-2xl">
-              Detalle de la orden #{code}
+              Orden de envío  #{code}
             </h4>
             <IconButton onClick={onCloseModal}>
               <CloseIcon />
@@ -186,7 +186,7 @@ const DialogOrdenRepartidor = ({
                     tracking-wider bg-primary rounded-md
                   "
                 >
-                  <label for="inputarchivo" id="labelarchivo">
+                  <label htmlFor="inputarchivo" id="labelarchivo">
                     Selecciona un archivo
                   </label>
                 </button>
@@ -196,7 +196,7 @@ const DialogOrdenRepartidor = ({
         </DialogContent>
 
         <DialogActions sx={{ padding: "16px" }}>
-          <Button variant="contained" color="secondary" fullWidth>
+          <Button variant="contained" color="secondary" fullWidth  onClick={onCloseModal}>
             Finalizar Orden
           </Button>
         </DialogActions>
@@ -218,7 +218,7 @@ DialogOrdenRepartidor.propTypes = {
 
 DialogOrdenRepartidor.defaultProps = {
   state: "En espera",
-  code: "0o9i8u7y6",
+  code: "100004",
   commerce: "Zipol",
   date: "12/12/2020",
   pickupLocation: "Calle 153 # 104 - 18 - Medellin",

@@ -8,14 +8,19 @@ import {
   loginAsync,
   loginGoogle,
   loginFacebook,
+  loginSync,
 } from "../redux/actions/actionLogin"
 
 // Hook
 import useForm from "../hooks/useForm"
 
+// Utils
+import clientRapidisimo from "../utils/client"
+
 // Material Icons
 import FacebookIcon from "@mui/icons-material/Facebook"
 import GoogleIcon from "@mui/icons-material/Google"
+
 
 const Login = (props) => {
   const dispatch = useDispatch()
@@ -26,9 +31,21 @@ const Login = (props) => {
 
   const { user, pass } = formValue
 
+  const fetchLogin = async () => {
+    await clientRapidisimo({
+      method: "POST",
+      url: '/auth/logIn',
+      data: {
+        email: user,
+        password: pass,
+      }
+    })
+    dispatch(loginAsync(user, pass))
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(loginAsync(user, pass))
+    fetchLogin()
     reset()
   }
 
