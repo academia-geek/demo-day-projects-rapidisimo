@@ -50,9 +50,10 @@ const ListadoSolicitudesRepartidor = () => {
     try {
       const { data } = await clientRapidisimo({
         method: "GET",
-        url: "/OrdersDateDelivery/",
+        url: "/allAssignedOrder/",
       })
       // dispatch(listarRepartidores(data))
+      console.log(data)
     } catch (error) {
       console.log(error)
     }
@@ -89,7 +90,7 @@ const ListadoSolicitudesRepartidor = () => {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary="Orden de envío 01 - Proto Tech"
+                  primary="Orden de envío #100004"
                   secondary="En proceso"
                 />
               </ListItem>
@@ -120,7 +121,7 @@ const ListadoSolicitudesRepartidor = () => {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary="Orden de envío 01 - Proto Tech"
+                  primary="Orden de envío #100008"
                   secondary="Entregado"
                 />
               </ListItem>
