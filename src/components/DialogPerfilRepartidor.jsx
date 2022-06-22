@@ -70,7 +70,7 @@ const DialogPerfilRepartidor = ({ name, rol, email, status }) => {
               className="rounded-full h-16 w-16 object-cover object-center"
               src={
                 estadoActual.user_image === ' ' || null
-                  ? 'https://res.cloudinary.com/rapidisimo/image/upload/v1655160552/rapidisimo/person_box_phs8c3.png'
+                  ? 'http://res.cloudinary.com/rapidisimo/image/upload/v1655160552/rapidisimo/person_box_phs8c3.png'
                   : estadoActual.user_image
               }
               alt={estadoActual.name}

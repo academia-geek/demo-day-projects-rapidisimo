@@ -200,7 +200,7 @@ DrawerSidebar.propTypes = {
 DrawerSidebar.defaultProps = {
   bgColor: "bg-primary",
   btnColor: "secondary",
-  image: "https://res.cloudinary.com/rapidisimo/image/upload/v1654557867/rapidisimo/logo_logo_1_otcwoh.png",
+  image: "http://res.cloudinary.com/rapidisimo/image/upload/v1654557867/rapidisimo/logo_logo_1_otcwoh.png",
   name: "Administrador",
   role: "Administrador",
 }

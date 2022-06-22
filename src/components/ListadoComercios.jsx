@@ -95,7 +95,7 @@ ComercioPerfil.propTypes = {
 
 ComercioPerfil.defaultProps = {
   nameCommerce: "Comercio",
-  logo: "https://picsum.photos/200/300",
+  logo: "http://picsum.photos/200/300",
   email: "compañia@compañia.com",
 }
 

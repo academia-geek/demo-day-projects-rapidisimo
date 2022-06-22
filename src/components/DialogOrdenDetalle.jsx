@@ -406,7 +406,7 @@ const DialogOrdenDetalle = () => {
                         "
                         >
                           <img
-                            src="https://res.cloudinary.com/rapidisimo/image/upload/v1655855976/rapidisimo/isotipo_gxj6y5.png"
+                            src="http://res.cloudinary.com/rapidisimo/image/upload/v1655855976/rapidisimo/isotipo_gxj6y5.png"
                             alt="isotipo rapidisimo"
                             className="h-4 w-auto object-cover"
                           />

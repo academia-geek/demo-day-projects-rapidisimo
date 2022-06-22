@@ -66,7 +66,7 @@ const Repartidor = () => {
       <DrawerSidebar
         bgColor="bg-secondary"
         btnColor="primary"
-        image="https://res.cloudinary.com/rapidisimo/image/upload/v1655160552/rapidisimo/person_box_phs8c3.png"
+        image="http://res.cloudinary.com/rapidisimo/image/upload/v1655160552/rapidisimo/person_box_phs8c3.png"
         name={`${perfilActual.name} ${perfilActual.lastname}`}
         role="Repartidor"
       >

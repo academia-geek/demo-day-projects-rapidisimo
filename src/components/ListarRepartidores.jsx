@@ -116,7 +116,7 @@ const ListarRepartidores = () => {
             lastNameDealer={repartidor.lastname}
             image={
               repartidor.user_image === " " || null
-                ? "https://res.cloudinary.com/rapidisimo/image/upload/v1655160552/rapidisimo/person_box_phs8c3.png"
+                ? "http://res.cloudinary.com/rapidisimo/image/upload/v1655160552/rapidisimo/person_box_phs8c3.png"
                 : repartidor.user_image
             }
             colorStatus={
@@ -147,7 +147,7 @@ RepartidorPerfil.defaultProps = {
   colorStatus: "border-success",
   nameDealer: "Repartidor",
   lastNameDealer: "Repartidor",
-  image: "https://picsum.photos/200/300",
+  image: "http://picsum.photos/200/300",
 }
 
 export default ListarRepartidores

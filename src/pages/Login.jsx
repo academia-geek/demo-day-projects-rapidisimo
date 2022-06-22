@@ -53,7 +53,7 @@ const Login = (props) => {
     <div
       className="
         w-screen h-screen overflow-x-auto
-        bg-[url('https://res.cloudinary.com/rapidisimo/image/upload/v1654528206/rapidisimo/train-821500_1_1_jy8bh8.png')]
+        bg-[url('http://res.cloudinary.com/rapidisimo/image/upload/v1654528206/rapidisimo/train-821500_1_1_jy8bh8.png')]
         bg-cover bg-no-repeat bg-right-top
       "
     >
