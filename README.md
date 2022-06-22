@@ -59,7 +59,7 @@ Link to Repository LandingPage [https://github.com/julianest/Rapidisimo](https:/
 Link to Repository Backend [https://github.com/giraldoDavid/rapidisimoProject](https://github.com/giraldoDavid/rapidisimoProject).
 
 ## Api´s
----
+
 Link to API´s .\
 Google Cloud Platform [Google Cloud Platform](https://console.cloud.google.com/)
 
