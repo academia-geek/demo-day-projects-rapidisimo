@@ -1,11 +1,11 @@
 // Base
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 
 // Utils
 import clientRapidisimo from "../utils/client"
 
-// 
+//
 import { InputLabel, TextField } from "@mui/material"
 
 const Indicadores = ({ title, subtitle }) => {
@@ -35,7 +35,13 @@ const Indicadores = ({ title, subtitle }) => {
 
 const IndicadoresConFecha = ({ title, subtitle, children }) => {
   return (
-    <div className="px-3 md:px-4 py-4 md:py-5 bg-white shadow-md rounded-md border-l-4 border-primary">
+    <div
+      className="
+        px-3 md:px-4 py-4 md:py-5
+        bg-white shadow-md rounded-md
+        border-l-4 border-primary
+      "
+    >
       <section
         className="
           flex items-center justify-between
@@ -62,21 +68,35 @@ const IndicadoresConFecha = ({ title, subtitle, children }) => {
 }
 
 const ListadoIndicadores = () => {
-  const fetchTotalOrdenes = async () => {
+  const [ganancia , setGanancia] = useState('')
+
+  const fetchTotalGanancias = async () => {
     try {
       const { data } = await clientRapidisimo({
         method: "GET",
-        url: "/getNumOrdersToday/",
+        url: "/getTotalEarnings/",
       })
-
-      console.log(data)
+      setGanancia(data)
     } catch (error) {
       console.log(error)
     }
   }
 
+  // const fetchTotalEarnings = async () => {
+  //   try {
+  //     const { data } = await clientRapidisimo({
+  //       method: "GET",
+  //       url: "/getTotalEarningsToday/",
+  //     })
+  //   }
+  //   catch(error) {
+  //     console.log(error)
+  //   }
+  // }
+
   useEffect(() => {
-    fetchTotalOrdenes()
+    fetchTotalGanancias()
+    // fetchTotalEarnings()
   }, [])
 
   return (
@@ -93,14 +113,10 @@ const ListadoIndicadores = () => {
           overflow-x-auto
         "
       >
-        {/* {
-          totalOrdenes.map((totalOrden) => (
-            <Indicadores
-              title="Total de ordenes"
-              subtitle={totalOrden.total_orders}
-            />
-          ))
-        } */}
+        <Indicadores
+          title="Total de ganancias"
+          subtitle={`$ ${ganancia.ganancias}`}
+        />
 
         <Indicadores title="Total de entregas hoy" subtitle="0 Entregas"/>
         <Indicadores title="Total utilidades acumuladas" subtitle="$0"/>
@@ -139,12 +155,12 @@ const ListadoIndicadores = () => {
 
 Indicadores.propTypes = {
   title: PropTypes.string,
-  subtitle: PropTypes.string,
+  subtitle: PropTypes.number,
 }
 
 Indicadores.defaultProps = {
   title: "Total de entregas hoy",
-  subtitle: "30 Entregas",
+  subtitle: 30,
 }
 
 export default ListadoIndicadores
