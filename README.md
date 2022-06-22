@@ -8,7 +8,8 @@ using the kanban method as development tools (workflow is attached at the end of
 ## This project was created with:
 
 
-###Front-End
+##Front-End
+
 
 **React**, **Redux** y **Firebase**
 
@@ -16,18 +17,18 @@ using the kanban method as development tools (workflow is attached at the end of
 
 **Jest** y **Enzyme**
 
-## Frameworks:
+## Frameworks and Libraries:
 
 
 Only React:
 ---
 **React-Router-Dom** 
 
-React (independentes):
+React (independent):
 ---
 **React-Redux**
 
-Independentes:
+Libraries:
 ---
 **Axios**, **Firebase**, **Formik**, **Yup**, **Material UI**, **Tailwind CSS** y **Firebase**
 
@@ -35,7 +36,8 @@ Other Tools:
 ---
 **Thunk**, **Cloudinary** y **Sweetalert**
 
-###Back-End
+##Back-End
+
 
 ## Available Scripts
 
