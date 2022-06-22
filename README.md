@@ -9,6 +9,7 @@ using the kanban method as development tools (workflow is attached at the end of
 
 
 ##Front-End
+---
 
 
 **React**, **Redux** y **Firebase**
@@ -37,6 +38,7 @@ Other Tools:
 **Thunk**, **Cloudinary** y **Sweetalert**
 
 ##Back-End
+---
 
 
 ## Available Scripts
