@@ -1,7 +1,12 @@
 // Base
 import React, { useEffect } from "react"
 import PropTypes from "prop-types"
+
+// Utils
 import clientRapidisimo from "../utils/client"
+
+// 
+import { InputLabel, TextField } from "@mui/material"
 
 const Indicadores = ({ title, subtitle }) => {
   return (
@@ -28,6 +33,34 @@ const Indicadores = ({ title, subtitle }) => {
   )
 }
 
+const IndicadoresConFecha = ({ title, subtitle, children }) => {
+  return (
+    <div className="px-3 md:px-4 py-4 md:py-5 bg-white shadow-md rounded-md border-l-4 border-primary">
+      <section
+        className="
+          flex items-center justify-between
+          w-full h-auto mb-3
+        "
+      >
+        <p className="text-regular text-xl lg:text-base xl:text-xl">{title}</p>
+
+        <p
+          className="
+            font-semibold tracking-wider
+            text-xl lg:text-base xl:text-xl
+          "
+        >
+          {subtitle}
+        </p>
+      </section>
+
+      <section className="grid grid-cols-2 gap-4">
+        {children}
+      </section>
+    </div>
+  )
+}
+
 const ListadoIndicadores = () => {
   const fetchTotalOrdenes = async () => {
     try {
@@ -36,11 +69,15 @@ const ListadoIndicadores = () => {
         url: "/getNumOrdersToday/",
       })
 
-      console.log(data, 'DATA')
+      console.log(data)
     } catch (error) {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    fetchTotalOrdenes()
+  }, [])
 
   return (
     <div>
@@ -64,14 +101,40 @@ const ListadoIndicadores = () => {
             />
           ))
         } */}
-        {/* <Indicadores /> */}
+
+        <Indicadores title="Total de entregas hoy" subtitle="0 Entregas"/>
+        <Indicadores title="Total utilidades acumuladas" subtitle="$0"/>
+
+        <IndicadoresConFecha
+          title="Total utilidades acumuladas por fecha"
+          subtitle="$0"
+        >
+          <div>
+            <InputLabel id="demo-select-small">Fecha Inicial</InputLabel>
+            <TextField
+              // label="Fecha"
+              id="outlined-size-small"
+              size="small"
+              fullWidth
+              type="date"
+            />
+          </div>
+
+          <div>
+            <InputLabel id="demo-select-small">Fecha Final</InputLabel>
+            <TextField
+              // label="Fecha"
+              id="outlined-size-small"
+              size="small"
+              fullWidth
+              type="date"
+            />
+          </div>
+        </IndicadoresConFecha>
+
       </div>
     </div>
   )
-
-  useEffect(() => {
-    fetchTotalOrdenes()
-  }, [])
 }
 
 Indicadores.propTypes = {
