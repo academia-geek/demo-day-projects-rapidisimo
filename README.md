@@ -7,6 +7,9 @@ using the kanban method as development tools (workflow is attached at the end of
 
 ## This project was created with:
 
+
+###Front-End
+
 **React**, **Redux** y **Firebase**
 
 ## This proyect was Tested with:
@@ -32,6 +35,8 @@ Other Tools:
 ---
 **Thunk**, **Cloudinary** y **Sweetalert**
 
+###Back-End
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -45,24 +50,22 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 **GitHub**  
 ---
 
-Link to Repository [https://github.com/academia-geek/demo-day-projects-rapidisimo](https://github.com/academia-geek/demo-day-projects-rapidisimo).  
-
+Link to Repository DemoDay [https://github.com/academia-geek/demo-day-projects-rapidisimo](https://github.com/academia-geek/demo-day-projects-rapidisimo).  
+Link to Repository LandingPage [https://github.com/julianest/Rapidisimo](https://github.com/julianest/Rapidisimo).
+Link to Repository Backend [https://github.com/giraldoDavid/rapidisimoProject](https://github.com/giraldoDavid/rapidisimoProject).
 
 ## Api´s
 ---
 Link to API´s .\
-https://api.mapbox.com/geocoding/
+Google Cloud Platform [Google Cloud Platform](https://console.cloud.google.com/)
 
 
-
-## Backend
-**Firebase** 
----
 
 ### Deployment
 
-This section has moved here: [https://app-ptwheater.web.app](https://app-ptwheater.web.app)
-
+This section you can see it in this link: 
+Panel Admin [https://rapidisimoproject.web.app/](https://rapidisimoproject.web.app/)
+Landing Page [https://rapidisimo-project.web.app/](https://rapidisimo-project.web.app/)
 ### Kanban
 
 ![Workflow](https://res.cloudinary.com/docutv7ug/image/upload/v1653450845/PT-Wheather/KanbanPt-Weather_xqabr7.png "WorkFlow")
