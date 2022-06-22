@@ -8,15 +8,15 @@ using the kanban method as development tools (workflow is attached at the end of
 ## This project was created with:
 
 
-*Front-End*
+# *Front-End*
 ---
 
 
-**React**, **Redux** y **Firebase**
+**React**, **Redux** and **Firebase**
 
 ## This proyect was Tested with:
 
-**Jest** y **Enzyme**
+**Jest** and **Enzyme**
 
 ## Frameworks and Libraries:
 
@@ -37,9 +37,34 @@ Other Tools:
 ---
 **Thunk**, **Cloudinary** y **Sweetalert**
 
-*Back-End*
+
+# *Back-End*
 ---
 
+## This project was created with:
+
+**Node.Js**, **TypeScript** and **Express**
+
+## This proyect was Tested with:
+
+**Jest** and **Supertest**
+
+## Frameworks, Databases and Libraries:
+
+
+Framework:
+---
+**Express** 
+
+Libraries:
+---
+**Morgan**, **MongoDb**, **Pg**, **Joi**, **Firebase**, **Validator**, **Cors**, **Dotenv** **Swagger**, **Jwt-Decode**, **UUID**, **Sendgrid**, **Google-cloud/storage** and **Google-maps/api**
+
+Databases:
+
+**MongoDB** and **Postgress**
+
+---
 
 ## Available Scripts
 
@@ -70,6 +95,7 @@ Google Cloud Platform [Google Cloud Platform](https://console.cloud.google.com/)
 This section you can see it in this link: 
 Panel Admin [https://rapidisimoproject.web.app/](https://rapidisimoproject.web.app/)
 Landing Page [https://rapidisimo-project.web.app/](https://rapidisimo-project.web.app/)
+Documentation Backend [http://34.75.198.96:4200/api-docs/](http://34.75.198.96:4200/api-docs/)
 ### Kanban
 
 ![Workflow](https://res.cloudinary.com/docutv7ug/image/upload/v1653450845/PT-Wheather/KanbanPt-Weather_xqabr7.png "WorkFlow")
