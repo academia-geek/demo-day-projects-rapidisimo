@@ -68,7 +68,22 @@ const IndicadoresConFecha = ({ title, subtitle, children }) => {
 }
 
 const ListadoIndicadores = () => {
-  const [ganancia , setGanancia] = useState('')
+  const [ordenesHoy, setOrdenesHoy] = useState([])
+  const [ganancia, setGanancia] = useState('')
+  const [utilidades, setUtilidades] = useState('')
+
+  const fetchOrdenesHoy = async () => {
+    try {
+      const data = await clientRapidisimo({
+        method: "GET",
+        url: "/getNumOrdersToday/",
+      })
+      setOrdenesHoy(data)
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
 
   const fetchTotalGanancias = async () => {
     try {
@@ -82,21 +97,23 @@ const ListadoIndicadores = () => {
     }
   }
 
-  // const fetchTotalEarnings = async () => {
-  //   try {
-  //     const { data } = await clientRapidisimo({
-  //       method: "GET",
-  //       url: "/getTotalEarningsToday/",
-  //     })
-  //   }
-  //   catch(error) {
-  //     console.log(error)
-  //   }
-  // }
+  const fetchUtilidades = async () => {
+    try {
+      const { data } = await clientRapidisimo({
+        method: "GET",
+        url: "/utilities/",
+      })
+      setUtilidades(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   useEffect(() => {
+    fetchOrdenesHoy()
     fetchTotalGanancias()
-    // fetchTotalEarnings()
+    fetchUtilidades()
   }, [])
 
   return (
@@ -114,12 +131,22 @@ const ListadoIndicadores = () => {
         "
       >
         <Indicadores
+          title="Total de entregas hoy"
+          subtitle={ordenesHoy.message = 'No hay ordenes entregadas'
+            ? '0 Entregas'
+            : `${ordenesHoy.message} Entregas`
+          }
+        />
+
+        <Indicadores
           title="Total de ganancias"
           subtitle={`$ ${ganancia.ganancias}`}
         />
 
-        <Indicadores title="Total de entregas hoy" subtitle="0 Entregas"/>
-        <Indicadores title="Total utilidades acumuladas" subtitle="$0"/>
+        <Indicadores
+          title="Total utilidades acumuladas"
+          subtitle={`$ ${utilidades.total}`}
+        />
 
         <IndicadoresConFecha
           title="Total utilidades acumuladas por fecha"
@@ -147,7 +174,6 @@ const ListadoIndicadores = () => {
             />
           </div>
         </IndicadoresConFecha>
-
       </div>
     </div>
   )

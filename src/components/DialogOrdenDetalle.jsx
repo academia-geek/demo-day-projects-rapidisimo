@@ -1,5 +1,5 @@
 // Base
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 
 // Utils
@@ -34,7 +34,6 @@ import {
   DialogContent,
   DialogTitle,
   FormControl,
-  Grid,
   IconButton,
   InputLabel,
   MenuItem,
@@ -43,7 +42,6 @@ import {
   Typography
 } from "@mui/material"
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
-
 
 // Material UI Icons
 import CloseIcon from "@mui/icons-material/Close"
@@ -190,7 +188,6 @@ const DialogOrdenDetalle = () => {
 
   // Comercios
   const { listaComercios } = useSelector((state) => state.comercios)
-  console.log(listaComercios)
 
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"))
@@ -263,9 +260,7 @@ const DialogOrdenDetalle = () => {
 
   const comercioInfo = listaComercios.find(comercio => comercio.id_company === ordenActual.id_company)
 
-  const mapRef = useRef()
   const [zoom, setZoom] = useState(10)
-  const [bounds, setBounds] = useState(null)
 
   return (
     <div>

@@ -35,7 +35,12 @@ import AddLocationAltOutlinedIcon from "@mui/icons-material/AddLocationAltOutlin
 
 const ListadoOrdenes = () => {
   const dispatch = useDispatch()
+  // ordenes
   const { listaOrdenes } = useSelector((state) => state.ordenes)
+
+
+  // Comercios
+  const { listaComercios } = useSelector((state) => state.comercios)
 
   const handleAbrirModal = (orden) => {
     dispatch(actualizarModalOrden(true))
@@ -94,9 +99,11 @@ const ListadoOrdenes = () => {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>En espera</MenuItem>
-            <MenuItem value={20}>En reparto</MenuItem>
-            <MenuItem value={30}>Entregado</MenuItem>
+            {listaComercios.map((comercio) => (
+              <MenuItem value={comercio.id_company} key={comercio.id_company}>
+                {comercio.name_company}
+              </MenuItem>
+            ))}
           </Select>
         </Grid>
         <Grid item xs={12} md={4}>

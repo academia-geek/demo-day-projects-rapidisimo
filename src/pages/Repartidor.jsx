@@ -70,12 +70,12 @@ const Repartidor = () => {
         name={`${perfilActual.name} ${perfilActual.lastname}`}
         role="Repartidor"
       >
-        <InfoRepartidor/>
+        <InfoRepartidor />
       </DrawerSidebar>
 
       <Layout>
         <Header
-          nameUser = {estadoActual.name === '' ? 'Repartidor' :estadoActual.name }
+          nameUser={estadoActual.name === '' ? 'Repartidor' : estadoActual.name}
         />
         <ListadoSolicitudesRepartidor />
       </Layout>

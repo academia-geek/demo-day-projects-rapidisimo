@@ -29,4 +29,3 @@ export const actualizarLoader = (payload) => ({
   type: typesOrdenes.actualizarLoader,
   payload
 })
-

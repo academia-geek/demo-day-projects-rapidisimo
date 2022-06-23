@@ -23,4 +23,3 @@ export const actualizarLoader = (payload) => ({
   type: typesPerfil.actualizarLoader,
   payload
 })
-

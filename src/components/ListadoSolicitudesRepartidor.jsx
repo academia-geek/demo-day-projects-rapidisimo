@@ -33,12 +33,12 @@ const ListadoSolicitudesRepartidor = () => {
   const [value, setValue] = useState(0)
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   const handleChangeIndex = (index) => {
-    setValue(index);
-  };
+    setValue(index)
+  }
 
   const handleClickOpen = () => {
     setAbrir(!abrir)

@@ -1,6 +1,5 @@
 // React
 import React from 'react'
-import PropTypes from 'prop-types'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
@@ -29,7 +28,6 @@ import * as Yup from "yup"
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
-
 
 const SingUpSchema = Yup.object().shape({
   name: Yup.string()
@@ -67,15 +65,15 @@ const DialogPerfilLogin = ({ name, rol, email, status }) => {
   //   dispatch(modalDetalleRepartidor(false))
   // }
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
 
   const handleClickOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   return (
     <>
@@ -120,7 +118,7 @@ const DialogPerfilLogin = ({ name, rol, email, status }) => {
               phone: 0,
             }}
             validationSchema={SingUpSchema}
-            onSubmit={(values) => {}}
+            onSubmit={(values) => { }}
           >
             {({ errors, touched, handleReset, handleSubmit }) => (
               <Form onSubmit={handleSubmit}>
@@ -234,6 +232,5 @@ const DialogPerfilLogin = ({ name, rol, email, status }) => {
     </>
   )
 }
-
 
 export default DialogPerfilLogin

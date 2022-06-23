@@ -55,7 +55,7 @@ const AppRoutes = () => {
       setCheckIn(false)
     })
 
-    if (localStorage.getItem('token'))  {
+    if (localStorage.getItem('token')) {
       fetchPerfil()
     }
   }, [setIsLoggedIn, setCheckIn])
