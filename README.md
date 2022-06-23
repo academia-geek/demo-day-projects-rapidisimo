@@ -23,7 +23,7 @@ using the kanban method as development tools (workflow is attached at the end of
 
 Only React:
 ---
-**React-Router-Dom** 
+**React-Router-Dom**
 
 React (independent):
 ---
@@ -54,7 +54,7 @@ Other Tools:
 
 Framework:
 ---
-**Express** 
+**Express**
 
 Libraries:
 ---
@@ -76,10 +76,10 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Repository
-**GitHub**  
+**GitHub**
 ---
 
-Link to Repository DemoDay [https://github.com/academia-geek/demo-day-projects-rapidisimo](https://github.com/academia-geek/demo-day-projects-rapidisimo).  
+Link to Repository DemoDay [https://github.com/academia-geek/demo-day-projects-rapidisimo](https://github.com/academia-geek/demo-day-projects-rapidisimo).
 Link to Repository LandingPage [https://github.com/julianest/Rapidisimo](https://github.com/julianest/Rapidisimo).
 Link to Repository Backend [https://github.com/giraldoDavid/rapidisimoProject](https://github.com/giraldoDavid/rapidisimoProject).
 
@@ -92,7 +92,7 @@ Google Cloud Platform [Google Cloud Platform](https://console.cloud.google.com/)
 
 ### Deployment
 
-This section you can see it in this link: 
+This section you can see it in this link:
 Panel Admin [https://rapidisimoproject.web.app/](https://rapidisimoproject.web.app/)
 Landing Page [https://rapidisimo-project.web.app/](https://rapidisimo-project.web.app/)
 Documentation Backend [http://34.75.198.96:4200/api-docs/](http://34.75.198.96:4200/api-docs/)
