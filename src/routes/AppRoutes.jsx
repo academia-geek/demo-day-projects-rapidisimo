@@ -2,12 +2,15 @@
 import React, { useEffect, useState } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
+
 // Firebase
 import { getAuth, onAuthStateChanged } from "firebase/auth"
+
 
 // Pages
 import Register from "../pages/Register"
 import Login from "../pages/Login"
+
 
 // Componentes
 import { PrivateRoutes, PublicRoutes } from "./PublicAndPrivateRoutes"
