@@ -98,4 +98,4 @@ Landing Page [https://rapidisimo-project.web.app/](https://rapidisimo-project.we
 Documentation Backend [http://34.75.198.96:4200/api-docs/](http://34.75.198.96:4200/api-docs/)
 ### Kanban
 
-![Workflow](https://res.cloudinary.com/docutv7ug/image/upload/v1653450845/PT-Wheather/KanbanPt-Weather_xqabr7.png "WorkFlow")
+![Workflow](https://res.cloudinary.com/docutv7ug/image/upload/v1655948005/rapidisimo/5a23e5ed-02eb-46cf-bf54-7adf532675c4_sciirb.jpg "WorkFlow")
